@@ -1,18 +1,18 @@
-import React, { Fragment, useEffect, useState } from 'react';
-import { useF1Context } from '../contexts/F1Context';
+import React, { Fragment, useEffect, useState } from "react";
+import { useF1Context } from "../contexts/F1Context";
 import {
   getRaces,
   setRaceResult,
   setQualifyingResult,
-} from '../reducers/f1Actions';
-import RaceStats from '../components/RaceStats';
-import Accordion from '../components/Accordion';
+} from "../reducers/f1Actions";
+import RaceStats from "../components/RaceStats";
+import Accordion from "../components/Accordion";
 
 const Races = () => {
   const [{ races }, dispatch] = useF1Context();
   useEffect(() => {
     if (races.length === 0) {
-      console.log('loading races from useEffect');
+      console.log("loading races from useEffect");
       getRaces(dispatch);
     }
   }, [races.length, dispatch]);
@@ -33,8 +33,8 @@ const Races = () => {
 
   return (
     <Fragment>
-      <Accordion title="Formula 1 Races - 2020">
-        {console.log('render races')}
+      <Accordion title="Formula 1 Races - 2021">
+        {console.log("render races")}
         {races &&
           races.map((race) => {
             const title = `${race.raceName} - ${race.Circuit.circuitName}`;
