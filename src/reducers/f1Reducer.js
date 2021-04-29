@@ -6,9 +6,9 @@ export const initialState = {
 };
 const f1Reducer = (state, action) => {
   switch (action.type) {
-    case 'SET_RACES':
+    case "SET_RACES":
       return { ...state, races: action.races };
-    case 'SET_RACE_RESULT':
+    case "SET_RACE_RESULT":
       if (action.results && state.races) {
         /*
         1.) Find Race By Round
@@ -26,7 +26,7 @@ const f1Reducer = (state, action) => {
         return { ...state, races: updatedRaces };
       }
       return state;
-    case 'SET_QUALIFYING_RESULT':
+    case "SET_QUALIFYING_RESULT":
       if (action.results && state.races) {
         /*
           1.) Find Race By Round
@@ -44,7 +44,7 @@ const f1Reducer = (state, action) => {
         return { ...state, races: updatedRaces };
       }
       return state;
-    case 'SET_RACE_LAP_TIMES':
+    case "SET_RACE_LAP_TIMES":
       if (action.results && state.races) {
         /*
           1.) Find Race By Round
@@ -62,7 +62,7 @@ const f1Reducer = (state, action) => {
         return { ...state, races: updatedRaces };
       }
       return state;
-    case 'SET_CONSTRUCTORS':
+    case "SET_CONSTRUCTORS":
       return { ...state, constructors: action.constructors };
     default:
       return state;

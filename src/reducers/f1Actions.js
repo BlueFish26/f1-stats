@@ -54,6 +54,19 @@ export const getRaces = async (dispatch) => {
     }
     const response = await axios.get("http://ergast.com/api/f1/current.json");
     const data = response.data.MRData.RaceTable.Races;
+    data.map((race) => {
+      switch (race.Circuit.circuitId) {
+        case "ricard":
+        case "silverstone":
+        case "zandvoort":
+          race.Circuit.circuitImagePath = `imgs/circuits/${race.Circuit.circuitId}.png`;
+          break;
+        default:
+          race.Circuit.circuitImagePath = `imgs/circuits/${race.Circuit.circuitId}.svg`;
+      }
+
+      return race;
+    });
     localStorage.setItem("f1-races", JSON.stringify(data));
     dispatch({ type: "SET_RACES", races: data });
   } catch (error) {

@@ -13,7 +13,7 @@ const Card = ({ image, children }) => {
 };
 
 const Image = ({ src }) => {
-  return <img src={src} alt="" style={{ width: "100%" }} />;
+  return <img src={src} alt="" style={{ width: "100%", maxHeight: "247px" }} />;
 };
 
 const Title = ({ text }) => {
