@@ -14,28 +14,33 @@ const Race = () => {
   const { circuitId } = useParams();
 
   useEffect(() => {
+    //useEffect is for side-effects only
+    //side effects means a dependency or state is changed
+    //so to re avoid infinite re-render or triggering side-effects,
+    //ensure that if the dependency is updated, DO NOT update it again!!!
     async function LoadRace() {
       if (races.length === 0) {
         console.log("getRaces");
         await getRaces(dispatch);
       }
-      setThisRace(
-        races.filter((race) => race.Circuit.circuitId === circuitId)[0]
-      );
-      if (thisRace) {
+      const r = races.filter((race) => race.Circuit.circuitId === circuitId);
+      //this will change of thisRace, which will trigger re-render
+      r && setThisRace(r[0]);
+      if (thisRace && !thisRace.Results && !thisRace.QualifyingResults) {
         const round = thisRace.round;
+        //these will change the races, which will trigger re-render
         await setRaceResult(round, dispatch);
+        //these will change the races, which will trigger re-render
         await setQualifyingResult(round, dispatch);
       }
       console.log("thisRace", thisRace);
     }
     LoadRace();
-  }, [thisRace, dispatch]);
+  }, [dispatch, thisRace, circuitId, races]);
 
   return (
-    <div>
-      <h1>RACE - {circuitId}</h1>
-      <p>{thisRace && thisRace.Circuit.circuitName}</p>
+    <div style={{ padding: "0.5rem" }}>
+      <h3>{thisRace && thisRace.Circuit.circuitName}</h3>
       {thisRace && thisRace.Results && thisRace.QualifyingResults && (
         <RaceStats race={thisRace} />
       )}

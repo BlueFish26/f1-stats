@@ -1,7 +1,7 @@
-import React, { Fragment } from 'react';
-import Tabs from './Tabs';
-import RaceResult from './RaceResult';
-import QualifyingResult from './QualifyingResult';
+import React, { Fragment } from "react";
+import Tabs from "./Tabs";
+import RaceResult from "./RaceResult";
+import QualifyingResult from "./QualifyingResult";
 
 const RaceStats = ({ race }) => {
   const raceResultId = `tab-result-${race.round}`;
@@ -10,10 +10,10 @@ const RaceStats = ({ race }) => {
 
   return (
     <Fragment>
-      {console.log('Render RaceStats...')}
+      {console.log("Render RaceStats...")}
       <img
-        style={{ height: '100px' }}
-        src={`../../imgs/circuits/${race.Circuit.circuitId}.png`}
+        style={{ height: "100px" }}
+        src={`../${race.Circuit.circuitImagePath}`}
         alt=""
       />
       <Tabs>

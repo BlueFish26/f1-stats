@@ -16,7 +16,7 @@
   padding: 1rem 2rem;
   margin-right: 0.2rem;
   cursor: pointer;
-  background: #90caf9;
+  background: #f55c1a;
   font-weight: bold;
   transition: background ease 0.2s;
 }
@@ -28,13 +28,13 @@
   padding: 1rem;
   background: #fff;
 }
-.tabs input[type='radio'] {
+.tabs input[type="radio"] {
   display: none;
 }
-.tabs input[type='radio']:checked + label {
+.tabs input[type="radio"]:checked + label {
   background: #fff;
 }
-.tabs input[type='radio']:checked + label + .tab {
+.tabs input[type="radio"]:checked + label + .tab {
   display: block;
 }
 

@@ -16,7 +16,7 @@ const NavBar = () => {
       <div className={navClassName}>
         <Link
           to="/races"
-          className={location.pathname === "/races" ? "active" : ""}
+          className={location.pathname.includes("/race") ? "active" : ""}
         >
           Races
         </Link>
