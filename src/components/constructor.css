@@ -1,0 +1,88 @@
+.field-constructor-card {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  border: solid 2px #000;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  margin-top: 40px;
+  padding-right: 10px;
+  padding-top: 10px;
+  max-width: 500px;
+  margin-left: 5px;
+}
+
+.field-constructor-card .item {
+  color: #000;
+}
+
+.field-constructor-card .item .standing {
+  padding-bottom: 5px;
+  border-bottom: 1px solid #949498;
+  margin-bottom: 5px;
+
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+
+  font-weight: 600;
+}
+
+.field-constructor-card .item .info {
+  padding-bottom: 5px;
+  border-bottom: 1px solid #949498;
+  margin-bottom: 5px;
+
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.field-constructor-card .item .info .name {
+  display: flex;
+  align-items: center;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.field-constructor-card .item .info .logo img {
+  max-width: 50px;
+}
+
+.field-constructor-card .item .drivers {
+  margin-bottom: 10px;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.field-constructor-card .item .drivers .driver {
+  margin-left: 5px;
+  border-left: solid 2px #949498;
+  border-bottom: solid 2px #949498;
+  border-bottom-left-radius: 10px;
+
+  padding: 0;
+  width: 100%;
+  max-width: 48%;
+  overflow: hidden;
+
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+.field-constructor-card .item .drivers .driver .name {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.field-constructor-card .item .drivers .driver .image img {
+  max-width: 48px;
+}
+.field-constructor-card .item .car-image img {
+  max-width: 400px;
+}

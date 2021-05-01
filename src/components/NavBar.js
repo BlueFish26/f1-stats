@@ -24,7 +24,7 @@ const NavBar = () => {
           to="/teams"
           className={location.pathname === "/teams" ? "active" : ""}
         >
-          Teams
+          Constructors
         </Link>
         <Link
           to="/drivers"
