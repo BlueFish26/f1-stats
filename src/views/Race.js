@@ -11,6 +11,7 @@ import RaceStats from "../components/RaceStats";
 const Race = () => {
   const [{ races }, dispatch] = useF1Context();
   const [thisRace, setThisRace] = useState(null);
+  const [loading, setLoading] = useState(false);
   const { circuitId } = useParams();
 
   useEffect(() => {
@@ -20,27 +21,38 @@ const Race = () => {
     //ensure that if the dependency is updated, DO NOT update it again!!!
     async function LoadRace() {
       if (races.length === 0) {
-        console.log("getRaces");
         await getRaces(dispatch);
       }
-      const r = races.filter((race) => race.Circuit.circuitId === circuitId);
+      const raceFound = races.filter(
+        (race) => race.Circuit.circuitId === circuitId
+      );
       //this will change of thisRace, which will trigger re-render
-      r && setThisRace(r[0]);
+      raceFound && setThisRace(raceFound[0]);
       if (thisRace && !thisRace.Results && !thisRace.QualifyingResults) {
+        setLoading(true);
         const round = thisRace.round;
         //these will change the races, which will trigger re-render
         await setRaceResult(round, dispatch);
         //these will change the races, which will trigger re-render
         await setQualifyingResult(round, dispatch);
+        setLoading(false);
       }
       console.log("thisRace", thisRace);
     }
     LoadRace();
-  }, [dispatch, thisRace, circuitId, races]);
+  }, [dispatch, thisRace, circuitId, races, loading]);
 
   return (
     <div style={{ padding: "0.5rem" }}>
       <h3>{thisRace && thisRace.Circuit.circuitName}</h3>
+      {loading && (
+        <p>
+          <button className="buttonload">
+            <i className="fa fa-spinner fa-spin"></i> Loading Race Data
+          </button>
+        </p>
+      )}
+
       {thisRace && thisRace.Results && thisRace.QualifyingResults && (
         <RaceStats race={thisRace} />
       )}

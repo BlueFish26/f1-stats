@@ -1,4 +1,4 @@
-import axios from "axios";
+import F1Database from "../data/F1Database";
 
 export const getConstructors = async (dispatch) => {
   try {
@@ -9,41 +9,14 @@ export const getConstructors = async (dispatch) => {
       return;
     }
     if (data.length === 0) {
-      const response = await axios.get(
-        "http://ergast.com/api/f1/current/constructorStandings.json"
-      );
-      data =
-        response.data.MRData.StandingsTable.StandingsLists[0]
-          .ConstructorStandings;
-      let updatedData = await data.reduce(async (initial, current) => {
-        let collection = await initial;
-        const constructorId = current.Constructor.constructorId;
-        const drivers = await getConstructorDrivers(constructorId);
-        current.drivers = drivers;
-        collection.push(current);
-        return collection;
-      }, Promise.resolve([]));
-      localStorage.setItem("f1-constructors", JSON.stringify(updatedData));
-      dispatch({ type: "SET_CONSTRUCTORS", constructors: updatedData });
+      const contructors = await F1Database.getConstructors();
+      localStorage.setItem("f1-constructors", JSON.stringify(contructors));
+      dispatch({ type: "SET_CONSTRUCTORS", constructors: contructors });
     }
   } catch (error) {
     console.error(error);
   }
 };
-
-async function getConstructorDrivers(constructorId) {
-  try {
-    const response = await axios.get(
-      `http://ergast.com/api/f1/current/constructors/${constructorId}/drivers.json`
-    );
-    const data = response.data.MRData.DriverTable.Drivers;
-    console.log("Drivers ▶️", data);
-    return data;
-  } catch (error) {
-    console.error(error);
-    return null;
-  }
-}
 
 export const getRaces = async (dispatch) => {
   try {
@@ -52,21 +25,7 @@ export const getRaces = async (dispatch) => {
       dispatch({ type: "SET_RACES", races: data });
       return;
     }
-    const response = await axios.get("http://ergast.com/api/f1/current.json");
-    const data = response.data.MRData.RaceTable.Races;
-    data.map((race) => {
-      switch (race.Circuit.circuitId) {
-        case "ricard":
-        case "silverstone":
-        case "zandvoort":
-          race.Circuit.circuitImagePath = `imgs/circuits/${race.Circuit.circuitId}.png`;
-          break;
-        default:
-          race.Circuit.circuitImagePath = `imgs/circuits/${race.Circuit.circuitId}.svg`;
-      }
-
-      return race;
-    });
+    const data = await F1Database.getRaces();
     localStorage.setItem("f1-races", JSON.stringify(data));
     dispatch({ type: "SET_RACES", races: data });
   } catch (error) {
@@ -76,15 +35,9 @@ export const getRaces = async (dispatch) => {
 
 export const setRaceResult = async (round, dispatch) => {
   try {
-    const response = await axios.get(
-      `http://ergast.com/api/f1/current/${round}/results.json`
-    );
-    let data = [];
-    if (response.data.MRData.RaceTable.Races[0]) {
-      data = response.data.MRData.RaceTable.Races[0].Results;
-    }
-    dispatch({ type: "SET_RACE_RESULT", round: round, results: data });
-    getDriversLapTimes(round, data, dispatch);
+    const race = await F1Database.getRaceResults(round);
+    dispatch({ type: "SET_RACE_RESULT", round: round, results: race });
+    //getDriversLapTimes(round, race, dispatch);
   } catch (error) {
     console.error(error);
   }
@@ -92,13 +45,7 @@ export const setRaceResult = async (round, dispatch) => {
 
 export const setQualifyingResult = async (round, dispatch) => {
   try {
-    const response = await axios.get(
-      `http://ergast.com/api/f1/current/${round}/qualifying.json`
-    );
-    let data = [];
-    if (response.data.MRData.RaceTable.Races[0]) {
-      data = response.data.MRData.RaceTable.Races[0].QualifyingResults;
-    }
+    const data = await F1Database.getQualifyingResults(round);
     dispatch({ type: "SET_QUALIFYING_RESULT", round: round, results: data });
   } catch (error) {
     console.error(error);
@@ -109,31 +56,21 @@ function getDriversLapTimes(round, race, dispatch) {
   //TODO: This is very slow, find a new way to optimize, or re-design data presentation
   let driverLapTimes = race.reduce(async (initial, current) => {
     let collection = await initial;
-    const lapTimes = await getRaceLapTimesForDriver(
+
+    const lapTimes = await F1Database.getRaceLapTimesForDriver(
       round,
       current.Driver.driverId
     );
-    collection = lapTimes;
+    console.log("lap", lapTimes);
+    console.log("current", current);
+
+    collection.push(lapTimes);
     return collection;
   }, Promise.resolve([]));
+  console.log("Driver Lap Times", driverLapTimes);
   dispatch({
     type: "SET_RACE_LAP_TIMES",
     round: round,
     results: driverLapTimes,
   });
-}
-
-async function getRaceLapTimesForDriver(round, driverId) {
-  try {
-    const response = await axios.get(
-      `http://ergast.com/api/f1/current/${round}/drivers/${driverId}/laps.json?limit=75`
-    );
-    let data = {};
-    if (response.data.MRData.RaceTable.Races[0]) {
-      data = response.data.MRData.RaceTable.Races[0].Laps;
-    }
-    return { driverId: driverId, lap_times: data };
-  } catch (error) {
-    console.error(error);
-  }
 }

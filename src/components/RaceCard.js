@@ -11,6 +11,7 @@ const RaceCard = ({ race }) => {
         </p>
         <div style={{ display: "flex", alignItems: "center" }}>
           <img
+            alt={race.Circuit.Location.country}
             src={`../imgs/flags/${race.Circuit.Location.country}.png`}
             style={{
               width: "15%",
@@ -19,6 +20,7 @@ const RaceCard = ({ race }) => {
               borderRadius: "1px",
               boxShadow: "1px 1px grey",
               marginRight: "0.5rem",
+              minWidth: "40px",
             }}
           />
           <div>
