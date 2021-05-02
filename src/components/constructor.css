@@ -8,7 +8,7 @@
   margin-top: 40px;
   padding-right: 10px;
   padding-top: 10px;
-  max-width: 500px;
+  max-width: 550px;
   margin-left: 5px;
 }
 
@@ -17,6 +17,7 @@
 }
 
 .field-constructor-card .item .standing {
+  margin: 0.5rem;
   padding-bottom: 5px;
   border-bottom: 1px solid #949498;
   margin-bottom: 5px;
@@ -29,7 +30,14 @@
   font-weight: 600;
 }
 
+.field-constructor-card .item .standing .rank,
+.field-constructor-card .item .standing .points {
+  font-weight: bold;
+  font-size: 1.6rem;
+}
+
 .field-constructor-card .item .info {
+  margin: 0.5rem;
   padding-bottom: 5px;
   border-bottom: 1px solid #949498;
   margin-bottom: 5px;
@@ -41,10 +49,16 @@
 }
 
 .field-constructor-card .item .info .name {
+  margin: 0.5rem;
   display: flex;
   align-items: center;
+}
+.field-constructor-card .item .info .name .team {
   font-size: 25px;
   font-weight: bold;
+}
+.field-constructor-card .item .info .name .flag {
+  max-width: 50px;
 }
 
 .field-constructor-card .item .info .logo img {
@@ -52,18 +66,17 @@
 }
 
 .field-constructor-card .item .drivers {
+  margin: 0.5rem;
   margin-bottom: 10px;
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
   align-items: center;
+  border-bottom: 1px solid #949498;
 }
 
 .field-constructor-card .item .drivers .driver {
   margin-left: 5px;
-  border-left: solid 2px #949498;
-  border-bottom: solid 2px #949498;
-  border-bottom-left-radius: 10px;
 
   padding: 0;
   width: 100%;
@@ -79,9 +92,22 @@
   font-size: 1.1rem;
   font-weight: bold;
 }
+.field-constructor-card .item .drivers .driver .name::after {
+  content: '';
+  display: block;
+  width: 130px;
+  height: 2px;
+  background: #54f745;
+  position: absolute;
+}
 
 .field-constructor-card .item .drivers .driver .image img {
   max-width: 48px;
+}
+.field-constructor-card .item .car-image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .field-constructor-card .item .car-image img {
   max-width: 400px;

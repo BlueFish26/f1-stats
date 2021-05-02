@@ -1,36 +1,61 @@
-import "./constructor.css";
+import './constructor.css';
 
-const ConstructorCard = () => {
+const ConstructorCard = ({ constructor }) => {
   return (
     <>
       <fieldset className="field-constructor-card">
         <div className="item">
           <div className="standing">
-            <div className="rank">1</div>
-            <div className="points">60 Pts</div>
+            <div className="rank">{constructor.position}</div>
+            <div className="points">{constructor.points} Pts</div>
           </div>
           <div className="info">
-            <div className="name">Mercedes</div>
+            <div className="name">
+              <img
+                className="flag"
+                src={`imgs/flags/${constructor.Constructor.nationality}.jpg`}
+                alt=""
+              />
+              <span className="team">{constructor.Constructor.name}</span>
+            </div>
             <div className="logo">
-              <img src="imgs/constructors/mercedes_logo.png" />
+              <img
+                src={`imgs/constructors/${constructor.Constructor.constructorId}_logo.png`}
+                alt=""
+              />
             </div>
           </div>
           <div className="drivers">
             <div className="driver">
-              <span className="name">Lewis Hamilton</span>
+              <div className="name">
+                {constructor.drivers[0].givenName}{' '}
+                {constructor.drivers[0].familyName}
+              </div>
               <div className="image">
-                <img src="imgs/drivers/hamilton.png" />
+                <img
+                  src={`imgs/drivers/${constructor.drivers[0].driverId}.png`}
+                  alt=""
+                />
               </div>
             </div>
             <div className="driver">
-              <span className="name">Valteri Bottas</span>
+              <div className="name">
+                {constructor.drivers[1].givenName}{' '}
+                {constructor.drivers[1].familyName}
+              </div>
               <div className="image">
-                <img src="imgs/drivers/bottas.png" />
+                <img
+                  src={`imgs/drivers/${constructor.drivers[1].driverId}.png`}
+                  alt=""
+                />
               </div>
             </div>
           </div>
           <div className="car-image">
-            <img src="imgs/constructors/mercedes_car.png" />
+            <img
+              src={`imgs/constructors/${constructor.Constructor.constructorId}_car.png`}
+              alt=""
+            />
           </div>
         </div>
       </fieldset>

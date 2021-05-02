@@ -1,8 +1,8 @@
-import React, { Fragment, useEffect } from "react";
-import Constructor from "../components/Constructor";
-import ConstructorCard from "../components/ConstructorCard";
-import { useF1Context } from "../contexts/F1Context";
-import { getConstructors } from "../reducers/f1Actions";
+import React, { Fragment, useEffect } from 'react';
+import Constructor from '../components/Constructor';
+import ConstructorCard from '../components/ConstructorCard';
+import { useF1Context } from '../contexts/F1Context';
+import { getConstructors } from '../reducers/f1Actions';
 
 const Teams = () => {
   const [{ constructors }, dispatch] = useF1Context();
@@ -11,7 +11,7 @@ const Teams = () => {
     async function loadConstructors() {
       await getConstructors(dispatch);
     }
-    console.log("Loading Constructors...");
+    console.log('Loading Constructors...');
     loadConstructors();
   }, [dispatch]);
 
@@ -20,18 +20,19 @@ const Teams = () => {
       <div className="team-header">
         <h1>F1 2021 Championship</h1>
       </div>
-
-      <ConstructorCard />
-
-      {constructors &&
-        constructors.map((constructor) => {
-          return (
-            <Constructor
-              key={constructor.Constructor.constructorId}
-              constructor={constructor}
-            />
-          );
-        })}
+      <div className="grid-container-3-col">
+        {constructors &&
+          constructors.map((constructor) => {
+            return (
+              <div
+                className="grid-item"
+                key={constructor.Constructor.constructorId}
+              >
+                <ConstructorCard constructor={constructor} />
+              </div>
+            );
+          })}
+      </div>
     </Fragment>
   );
 };
