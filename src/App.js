@@ -3,7 +3,6 @@ import { F1ContextProvider } from "./contexts/F1Context";
 import f1Reducer, { initialState } from "./reducers/f1Reducer";
 import NavBar from "./components/NavBar";
 import Teams from "./views/Teams";
-import Races from "./views/Races";
 import Drivers from "./views/Drivers";
 import RaceSchedule from "./views/RaceSchedule";
 import Race from "./views/Race";
@@ -22,9 +21,6 @@ const App = () => {
           </Route>
           <Route path="/race/:circuitId">
             <Race />
-          </Route>
-          <Route path="/races_acc">
-            <Races />
           </Route>
           <Route path="/drivers">
             <Drivers />

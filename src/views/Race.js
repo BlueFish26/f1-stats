@@ -37,7 +37,7 @@ const Race = () => {
         await setQualifyingResult(round, dispatch);
         setLoading(false);
       }
-      console.log("thisRace", thisRace);
+      //console.log("thisRace", thisRace);
     }
     LoadRace();
   }, [dispatch, thisRace, circuitId, races, loading]);

@@ -8,7 +8,6 @@ const RaceSchedule = () => {
   const history = useHistory();
   useEffect(() => {
     if (races.length === 0) {
-      console.log("loading races from useEffect");
       getRaces(dispatch);
     }
   }, [races.length, dispatch]);
