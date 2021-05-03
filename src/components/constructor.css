@@ -47,7 +47,6 @@
   justify-content: space-between;
   align-items: center;
 }
-
 .field-constructor-card .item .info .name {
   margin: 0.5rem;
   display: flex;
@@ -97,10 +96,25 @@
   display: block;
   width: 130px;
   height: 2px;
-  background: #54f745;
+  background: #dc0000;
   position: absolute;
 }
 
+.field-constructor-card .item .drivers .driver .name.mercedes::after {
+  background: #54f745;
+}
+.field-constructor-card .item .drivers .driver .name.ferrari::after {
+  background: #dc0000;
+}
+.field-constructor-card .item .drivers .driver .name.red_bull::after {
+  background: #0600ef;
+}
+.field-constructor-card .item .drivers .driver .name.mclaren::after {
+  background: #ff9800;
+}
+.field-constructor-card .item .drivers .driver .name.alphatauri::after {
+  background: #2b4562;
+}
 .field-constructor-card .item .drivers .driver .image img {
   max-width: 48px;
 }

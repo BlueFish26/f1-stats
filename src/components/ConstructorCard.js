@@ -27,7 +27,7 @@ const ConstructorCard = ({ constructor }) => {
           </div>
           <div className="drivers">
             <div className="driver">
-              <div className="name">
+              <div className={`name ${constructor.Constructor.constructorId}`}>
                 {constructor.drivers[0].givenName}{' '}
                 {constructor.drivers[0].familyName}
               </div>
@@ -39,7 +39,7 @@ const ConstructorCard = ({ constructor }) => {
               </div>
             </div>
             <div className="driver">
-              <div className="name">
+              <div className={`name ${constructor.Constructor.constructorId}`}>
                 {constructor.drivers[1].givenName}{' '}
                 {constructor.drivers[1].familyName}
               </div>
