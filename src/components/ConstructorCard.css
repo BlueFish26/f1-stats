@@ -16,8 +16,7 @@
   margin: 0;
   border: solid 2px #5b5959;
   border-radius: 0.4rem;
-  margin-top: 1rem;
-  margin-left: 0.5rem;
+  margin: 1rem 0.5rem;
   max-width: 550px;
   cursor: pointer;
 }
@@ -33,12 +32,10 @@
   padding-bottom: 5px;
   border-bottom: 1px solid #949498;
   margin-bottom: 5px;
-
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
   align-items: center;
-
   font-weight: 600;
 }
 .field-constructor-card .item .standing .rank,
@@ -80,12 +77,10 @@
 }
 .field-constructor-card .item .drivers .driver {
   margin-left: 5px;
-
   padding: 0;
   width: 100%;
   max-width: 48%;
   overflow: hidden;
-
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
@@ -96,7 +91,7 @@
   font-weight: bold;
 }
 .field-constructor-card .item .drivers .driver .name::after {
-  content: "";
+  content: '';
   display: block;
   width: 130px;
   height: 2px;

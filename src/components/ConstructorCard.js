@@ -1,4 +1,4 @@
-import "./constructor.css";
+import './ConstructorCard.css';
 
 const ConstructorCard = ({ constructor }) => {
   return (
@@ -34,7 +34,7 @@ const ConstructorCard = ({ constructor }) => {
           <div className="drivers">
             <div className="driver">
               <div className={`name ${constructor.Constructor.constructorId}`}>
-                {constructor.drivers[0].givenName}{" "}
+                {constructor.drivers[0].givenName}{' '}
                 {constructor.drivers[0].familyName}
               </div>
               <div className="image">
@@ -46,7 +46,7 @@ const ConstructorCard = ({ constructor }) => {
             </div>
             <div className="driver">
               <div className={`name ${constructor.Constructor.constructorId}`}>
-                {constructor.drivers[1].givenName}{" "}
+                {constructor.drivers[1].givenName}{' '}
                 {constructor.drivers[1].familyName}
               </div>
               <div className="image">
