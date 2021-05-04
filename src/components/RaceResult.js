@@ -1,5 +1,4 @@
 import React, { Fragment } from "react";
-import DriverRaceGraph from "./DriverRaceGraph";
 
 const RaceResult = ({ results }) => {
   return (
@@ -9,8 +8,6 @@ const RaceResult = ({ results }) => {
       {results && results.length === 0 && <div>No Results yet</div>}
       {results && results.length > 0 && (
         <Fragment>
-          <DriverRaceGraph />
-
           <div style={{ overflowX: "auto" }}>
             <table>
               <thead>

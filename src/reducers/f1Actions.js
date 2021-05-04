@@ -51,7 +51,7 @@ export const setQualifyingResult = async (round, dispatch) => {
     console.error(error);
   }
 };
-
+/*
 function getDriversLapTimes(round, race, dispatch) {
   //TODO: This is very slow, find a new way to optimize, or re-design data presentation
   let driverLapTimes = race.reduce(async (initial, current) => {
@@ -74,3 +74,4 @@ function getDriversLapTimes(round, race, dispatch) {
     results: driverLapTimes,
   });
 }
+*/
