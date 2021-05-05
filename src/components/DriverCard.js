@@ -11,9 +11,12 @@ const DriverCard = ({ driver }) => {
           </div>
           <div className="info">
             <div className="name">
-              <span
-                className={`driver ${driver.Constructors[0].constructorId}`}
-              >{`${driver.Driver.givenName} ${driver.Driver.familyName}`}</span>
+              <div>
+                <span>{`${driver.Driver.givenName}`}</span>
+                <span
+                  className={`driver ${driver.Constructors[0].constructorId}`}
+                >{`${driver.Driver.familyName}`}</span>
+              </div>
             </div>
             <div className="flag">
               <img src={`imgs/flags/${driver.Driver.nationality}.png`} alt="" />

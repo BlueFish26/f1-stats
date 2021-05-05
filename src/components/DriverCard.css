@@ -56,13 +56,17 @@
   align-items: center;
   font-weight: 500;
 }
+.field-driver-card .item .info .name div {
+  display: flex;
+  flex-direction: column;
+}
 .field-driver-card .item .info .name .driver {
   text-transform: uppercase;
 }
 .field-driver-card .item .info .name .driver::after {
   content: "";
   display: block;
-  width: 125px;
+  width: 80px;
   height: 2px;
   background: #dc0000;
   position: absolute;
@@ -112,11 +116,13 @@
   text-transform: uppercase;
 }
 .field-driver-card .item .helmet-image .team-number img {
+  height: 5vh;
   max-width: 60px;
   margin-right: 0;
 }
 .field-driver-card .item .helmet-image img {
-  width: 60%;
+  height: 20vh;
+  width: auto;
   margin-left: auto;
   margin-right: auto;
   display: block;
