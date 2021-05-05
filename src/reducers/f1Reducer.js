@@ -8,6 +8,8 @@ const f1Reducer = (state, action) => {
   switch (action.type) {
     case "SET_RACES":
       return { ...state, races: action.races };
+    case "SET_DRIVERS":
+      return { ...state, drivers: action.drivers };
     case "SET_RACE_RESULT":
       if (action.results && state.races) {
         /*

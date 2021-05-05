@@ -4,21 +4,26 @@
   font-weight: 300;
   line-height: 1.5;
   margin: 0 auto;
-  font-size: 112%;
+  font-size: 0.9rem;
+  border-radius: 1rem;
 }
 .tabs {
   display: flex;
   flex-wrap: wrap;
 }
+.tabs h1 {
+  font-size: 1.2rem;
+}
 .tabs label {
   order: 1;
   display: block;
-  padding: 1rem 2rem;
+  padding: 0.5rem 1rem;
   margin-right: 0.2rem;
   cursor: pointer;
-  background: #f55c1a;
-  font-weight: bold;
+  background: #eee;
+  font-weight: 400;
   transition: background ease 0.2s;
+  border-radius: 1rem;
 }
 .tabs .tab {
   order: 99;
@@ -27,15 +32,24 @@
   display: none;
   padding: 1rem;
   background: #fff;
+  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.32);
 }
 .tabs input[type="radio"] {
   display: none;
 }
 .tabs input[type="radio"]:checked + label {
   background: #fff;
+  font-weight: 500;
+  color: crimson;
+  border: 1px solid #eee;
+  border-radius: 1rem;
+  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.32);
 }
 .tabs input[type="radio"]:checked + label + .tab {
   display: block;
+}
+.tabs label {
+  margin-bottom: 0.1rem;
 }
 
 @media (max-width: 45em) {

@@ -14,10 +14,9 @@
   border: 0;
   padding: 0;
   margin: 0;
-  border: solid 2px #5b5959;
+  border: solid 1px #5b5959;
   border-radius: 0.4rem;
   margin: 1rem 0.5rem;
-  max-width: 550px;
   cursor: pointer;
 }
 .field-driver-card:hover {
@@ -55,16 +54,69 @@
   margin: 0.5rem;
   display: flex;
   align-items: center;
+  font-weight: 500;
+}
+.field-driver-card .item .info .name .driver {
+  text-transform: uppercase;
+}
+.field-driver-card .item .info .name .driver::after {
+  content: "";
+  display: block;
+  width: 125px;
+  height: 2px;
+  background: #dc0000;
+  position: absolute;
+}
+.field-driver-card .item .info .name .driver.mercedes::after {
+  background: var(--mercedes);
+}
+.field-driver-card .item .info .name .driver.ferrari::after {
+  background: var(--ferrari);
+}
+.field-driver-card .item .info .name .driver.red_bull::after {
+  background: var(--red_bull);
+}
+.field-driver-card .item .info .name .driver.mclaren::after {
+  background: var(--mclaren);
+}
+.field-driver-card .item .info .name .driver.alphatauri::after {
+  background: var(--aplhatauri);
+}
+.field-driver-card .item .info .name .driver.aston_martin::after {
+  background: var(--aston_martin);
+}
+.field-driver-card .item .info .name .driver.alpine::after {
+  background: var(--alpine);
+}
+.field-driver-card .item .info .name .driver.alfa::after {
+  background: var(--alfa);
+}
+.field-driver-card .item .info .name .driver.williams::after {
+  background: var(--williams);
+}
+.field-driver-card .item .info .name .driver.haas::after {
+  background: var(--hass);
 }
 .field-driver-card .item .info .flag img {
   max-width: 50px;
 }
-.field-driver-card .item .car-image p {
+.field-driver-card .item .helmet-image .team-number {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.field-driver-card .item .helmet-image .team-number span {
   font-size: 1rem;
   margin: 0.5rem 1rem;
+  color: #67676d;
+  text-transform: uppercase;
 }
-.field-driver-card .item .car-image img {
-  width: 80%;
+.field-driver-card .item .helmet-image .team-number img {
+  max-width: 60px;
+  margin-right: 0;
+}
+.field-driver-card .item .helmet-image img {
+  width: 60%;
   margin-left: auto;
   margin-right: auto;
   display: block;

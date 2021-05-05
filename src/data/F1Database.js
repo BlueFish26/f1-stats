@@ -71,6 +71,19 @@ const F1Database = (function () {
     }
   };
 
+  const getDrivers = async () => {
+    try {
+      const response = await axios.get(
+        `${apiEndpoint}/current/driverStandings.json`
+      );
+      return response.data.MRData.StandingsTable.StandingsLists[0]
+        .DriverStandings;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  };
+
   const getRaceResults = async (round) => {
     try {
       const response = await axios.get(
@@ -122,6 +135,7 @@ const F1Database = (function () {
   return {
     getConstructors,
     getRaces,
+    getDrivers,
     getRaceResults,
     getQualifyingResults,
     getRaceLapTimesForDriver,
