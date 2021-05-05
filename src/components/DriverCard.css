@@ -1,0 +1,58 @@
+:root {
+  --mercedes: #00d2be;
+  --ferrari: #dc0000;
+  --red_bull: #0600ef;
+  --mclaren: #ff9800;
+  --aplhatauri: #2b4562;
+  --alpine: #0090ff;
+  --aston_martin: #006f62;
+  --alfa: #900000;
+  --williams: #005aff;
+  --hass: #5b5959;
+}
+.field-driver-card {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  border: solid 2px #5b5959;
+  border-radius: 0.4rem;
+  margin: 1rem 0.5rem;
+  max-width: 550px;
+  cursor: pointer;
+}
+.field-driver-card:hover {
+  border: solid 1px #000;
+  box-shadow: 1px 1px;
+}
+.field-driver-card .item {
+  color: #000;
+}
+.field-driver-card .item .standing {
+  margin: 0.5rem;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #949498;
+  margin-bottom: 5px;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+}
+.field-driver-card .item .standing .rank,
+.field-driver-card .item .standing .points {
+  font-weight: bold;
+  font-size: 1.6rem;
+}
+.field-driver-card .item .info {
+  margin: 0 0.5rem;
+  border-bottom: 1px solid #949498;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+.field-driver-card .item .info .name {
+  margin: 0.5rem;
+  display: flex;
+  align-items: center;
+}

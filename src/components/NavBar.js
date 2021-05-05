@@ -38,7 +38,7 @@ const NavBar = () => {
         >
           About
         </Link>
-        <a className="icon" onClick={loadMenu}>
+        <a href="/#" className="icon" onClick={loadMenu}>
           <i className="fa fa-bars"></i>
         </a>
       </div>
