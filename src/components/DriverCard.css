@@ -56,3 +56,16 @@
   display: flex;
   align-items: center;
 }
+.field-driver-card .item .info .flag img {
+  max-width: 50px;
+}
+.field-driver-card .item .car-image p {
+  font-size: 1rem;
+  margin: 0.5rem 1rem;
+}
+.field-driver-card .item .car-image img {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
