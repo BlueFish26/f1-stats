@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment } from "react";
 
 const QualifyingResult = ({ results }) => {
   return (
@@ -29,9 +29,15 @@ const QualifyingResult = ({ results }) => {
                     {result.Driver.givenName} {result.Driver.familyName}
                   </td>
                   <td>{result.Constructor.name}</td>
-                  <td>{result.Q1}</td>
-                  <td>{result.Q2}</td>
-                  <td>{result.Q3}</td>
+                  <td>
+                    {result.Q1 && <span className="time">{result.Q1}</span>}
+                  </td>
+                  <td>
+                    {result.Q2 && <span className="time">{result.Q2}</span>}
+                  </td>
+                  <td>
+                    {result.Q3 && <span className="time">{result.Q3}</span>}
+                  </td>
                 </tr>
               ))}
             </tbody>

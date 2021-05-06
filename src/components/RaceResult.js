@@ -33,17 +33,27 @@ const RaceResult = ({ results }) => {
                     </td>
                     <td>{result.Constructor.name}</td>
                     <td>{result.laps}</td>
-                    <td>{result.Time ? result.Time.time : "DNF"}</td>
                     <td>
-                      {result.FastestLap ? result.FastestLap.Time.time : ""}
+                      <span className="time">
+                        {result.Time ? result.Time.time : "DNF"}
+                      </span>
                     </td>
                     <td>
-                      {result.FastestLap
-                        ? result.FastestLap.AverageSpeed.speed
-                        : ""}{" "}
-                      {result.FastestLap
-                        ? result.FastestLap.AverageSpeed.units
-                        : ""}
+                      <span className="time">
+                        {result.FastestLap
+                          ? result.FastestLap.Time.time
+                          : "NO TIME SET"}
+                      </span>
+                    </td>
+                    <td>
+                      <span className="time">
+                        {result.FastestLap
+                          ? result.FastestLap.AverageSpeed.speed
+                          : "NO TIME SET"}{" "}
+                        {result.FastestLap
+                          ? result.FastestLap.AverageSpeed.units
+                          : ""}
+                      </span>
                     </td>
                     <td>{result.points}</td>
                   </tr>

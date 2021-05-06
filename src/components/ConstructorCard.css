@@ -21,7 +21,7 @@
   cursor: pointer;
 }
 .field-constructor-card:hover {
-  border: solid 2px #5b5959;
+  border: solid 1px #5b5959;
   box-shadow: 1px 1px 8px 0px rgba(0, 0, 0, 0.32);
 }
 .field-constructor-card .item {

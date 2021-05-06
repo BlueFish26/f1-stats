@@ -13,6 +13,7 @@
 }
 .tabs h1 {
   font-size: 1.2rem;
+  text-decoration: underline crimson;
 }
 .tabs label {
   order: 1;
