@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 const NavBar = () => {
-  const [navClassName, setClassName] = useState('topnav');
+  const [navClassName, setClassName] = useState("topnav");
   const loadMenu = () => {
-    if (navClassName === 'topnav') {
-      setClassName('topnav responsive');
+    if (navClassName === "topnav") {
+      setClassName("topnav responsive");
     } else {
-      setClassName('topnav');
+      setClassName("topnav");
     }
   };
   const location = useLocation();
@@ -16,25 +16,25 @@ const NavBar = () => {
       <div className={navClassName}>
         <Link
           to="/races"
-          className={location.pathname.includes('/race') ? 'active' : ''}
+          className={location.pathname.includes("/race") ? "active" : ""}
         >
           Races
         </Link>
         <Link
           to="/teams"
-          className={location.pathname === '/teams' ? 'active' : ''}
+          className={location.pathname === "/teams" ? "active" : ""}
         >
           Constructors
         </Link>
         <Link
           to="/drivers"
-          className={location.pathname === '/drivers' ? 'active' : ''}
+          className={location.pathname.includes("/driver") ? "active" : ""}
         >
           Drivers
         </Link>
         <Link
           to="/about"
-          className={location.pathname === '/about' ? 'active' : ''}
+          className={location.pathname === "/about" ? "active" : ""}
         >
           About
         </Link>

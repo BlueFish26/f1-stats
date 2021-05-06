@@ -4,6 +4,7 @@ import f1Reducer, { initialState } from "./reducers/f1Reducer";
 import NavBar from "./components/NavBar";
 import Teams from "./views/Teams";
 import Drivers from "./views/Drivers";
+import Driver from "./views/Driver";
 import RaceSchedule from "./views/RaceSchedule";
 import Race from "./views/Race";
 
@@ -24,6 +25,9 @@ const App = () => {
           </Route>
           <Route path="/drivers">
             <Drivers />
+          </Route>
+          <Route path="/driver/:driverId">
+            <Driver />
           </Route>
           <Route path="/" component={Teams} exact />
         </Switch>
