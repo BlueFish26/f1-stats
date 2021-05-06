@@ -1,34 +1,35 @@
-import Card from "../components/Card";
-
+import "./RaceCard.css";
 const RaceCard = ({ race }) => {
   return (
-    <Card image={<Card.Image src={race.Circuit.circuitImagePath} />}>
-      <Card.Title text={race.raceName} />
-      <Card.SubTitle text={race.date} />
-      <Card.Content>
-        <p>
-          <b>{race.Circuit.Location.country}</b>
-        </p>
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <img
-            alt={race.Circuit.Location.country}
-            src={`../imgs/flags/${race.Circuit.Location.country}.png`}
-            style={{
-              width: "15%",
-              height: "2rem",
-              border: "1px solid grey",
-              borderRadius: "1px",
-              boxShadow: "1px 1px grey",
-              marginRight: "0.5rem",
-              minWidth: "40px",
-            }}
-          />
-          <div>
-            <h5>{race.Circuit.circuitName}</h5>
+    <>
+      <fieldset className="field-race-card">
+        <legend className="card-legend-title">Round {race.round}</legend>
+        <div className="item">
+          <div className="date">
+            <div className="weekend">{race.date}</div>
+            <div className="flag">
+              <img
+                src={`imgs/flags/${race.Circuit.Location.country}.png`}
+                alt=""
+              />
+            </div>
+          </div>
+
+          <div className="info">
+            <div className="venue">
+              <div>
+                <span className="country">{race.Circuit.Location.country}</span>
+              </div>
+              <span className="ciruit">{race.Circuit.circuitName}</span>
+            </div>
+          </div>
+
+          <div className="track-image">
+            <img src={race.Circuit.circuitImagePath} alt="" />
           </div>
         </div>
-      </Card.Content>
-    </Card>
+      </fieldset>
+    </>
   );
 };
 

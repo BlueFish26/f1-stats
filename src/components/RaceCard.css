@@ -1,0 +1,79 @@
+.field-race-card {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  border: solid 1px #5b5959;
+  border-radius: 0.4rem;
+  margin: 1rem 0.5rem;
+  cursor: pointer;
+}
+.field-race-card .card-legend-title {
+  font-size: 15px;
+  line-height: 20px;
+  font-weight: 700;
+  padding-right: 10px;
+  padding-left: 0.5rem;
+  text-transform: uppercase;
+  color: #e10600;
+}
+
+.field-race-card:hover {
+  border: solid 1px #eee;
+  box-shadow: 1px 1px 1px 1px;
+}
+
+.field-race-card .item {
+  color: #000;
+}
+.field-race-card .item .date {
+  margin: 0.5rem;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #949498;
+  margin-bottom: 5px;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+}
+
+.field-race-card .item .date .weekend {
+  font-weight: bold;
+  font-size: 1rem;
+}
+.field-race-card .item .date .flag img {
+  max-width: 50px;
+}
+
+.field-race-card .item .info {
+  margin: 0.5rem;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #949498;
+  margin-bottom: 5px;
+}
+
+.field-race-card .item .info .venue {
+  display: flex;
+  flex-direction: column;
+}
+.field-race-card .item .info .venue .country {
+  border: 1px solid #eee;
+  border-radius: 1.2rem;
+  padding: 0.1rem 0.4rem;
+  margin-bottom: 0.5rem;
+  display: inline;
+  background-color: #eee;
+}
+.field-race-card .item .info .venue .ciruit {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.field-race-card .item .track-image img {
+  height: 20vh;
+  width: auto;
+  max-width: 350px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
