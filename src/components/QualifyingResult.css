@@ -1,0 +1,15 @@
+.quali-results {
+  background-color: #fff;
+}
+.quali-results .driver,
+.quali-results .constructor {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.quali-results .driver-number img,
+.quali-results .driver img,
+.quali-results .constructor img {
+  max-width: 30px;
+  margin-right: 0.3rem;
+}

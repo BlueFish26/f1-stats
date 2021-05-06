@@ -1,0 +1,15 @@
+.race-results {
+  background-color: #fff;
+}
+.race-results .driver,
+.race-results .constructor {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.race-results .driver-number img,
+.race-results .driver img,
+.race-results .constructor img {
+  max-width: 30px;
+  margin-right: 0.3rem;
+}

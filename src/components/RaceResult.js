@@ -1,15 +1,14 @@
-import React, { Fragment } from "react";
-
+import "./RaceResult.css";
 const RaceResult = ({ results }) => {
   return (
-    <Fragment>
+    <>
       <h1>Race Results</h1>
       {!results && <div>Loading...</div>}
       {results && results.length === 0 && <div>No Results yet</div>}
       {results && results.length > 0 && (
-        <Fragment>
-          <div style={{ overflowX: "auto" }}>
-            <table>
+        <>
+          <div style={{ overflowX: "scroll" }}>
+            <table className="race-results">
               <thead>
                 <tr>
                   <th>Position</th>
@@ -27,11 +26,32 @@ const RaceResult = ({ results }) => {
                 {results.map((result) => (
                   <tr key={result.number}>
                     <td>{result.position}</td>
-                    <td>{result.number}</td>
                     <td>
-                      {result.Driver.givenName} {result.Driver.familyName}
+                      <div className="driver-number">
+                        <img
+                          src={`../imgs/drivers/numbers/${result.Driver.driverId}.png`}
+                          alt=""
+                        />
+                      </div>
                     </td>
-                    <td>{result.Constructor.name}</td>
+                    <td>
+                      <div className="driver">
+                        <img
+                          src={`../imgs/drivers/helmets/${result.Driver.driverId}.png`}
+                          alt=""
+                        />
+                        {result.Driver.givenName} {result.Driver.familyName}
+                      </div>
+                    </td>
+                    <td>
+                      <div className="constructor">
+                        <img
+                          src={`../imgs/constructors/${result.Constructor.constructorId}_logo.png`}
+                          alt=""
+                        />
+                        {result.Constructor.name}
+                      </div>
+                    </td>
                     <td>{result.laps}</td>
                     <td>
                       <span className="time">
@@ -61,9 +81,9 @@ const RaceResult = ({ results }) => {
               </tbody>
             </table>
           </div>
-        </Fragment>
+        </>
       )}
-    </Fragment>
+    </>
   );
 };
 

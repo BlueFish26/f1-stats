@@ -128,19 +128,30 @@ table {
 table .time {
   border: 1px solid #58555a;
   border-radius: 15px;
-  padding: 0.3rem;
+  padding: 0.3rem 0.5rem;
   background-color: #eee;
+  white-space: nowrap;
 }
 th,
 td {
   text-align: left;
   padding: 0.5rem;
 }
-tr:nth-child(even) {
-  background: #eee;
+tr {
+  border-bottom: 1px solid #eee;
 }
+/*tr:nth-child(even) {
+  background: #eee;
+}*/
 tr:nth-child(1) {
   font-weight: bold;
+}
+tr:nth-child(2) {
+  font-weight: bold;
+}
+tr:nth-child(3) {
+  font-weight: bold;
+  border-bottom: 2px dashed crimson;
 }
 .grid-container {
   display: grid;

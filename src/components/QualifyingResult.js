@@ -1,14 +1,13 @@
-import React, { Fragment } from "react";
-
+import "./QualifyingResult.css";
 const QualifyingResult = ({ results }) => {
   return (
-    <Fragment>
+    <>
       <h1>Qualifying Results</h1>
       {!results && <div>Loading...</div>}
       {results && results.length === 0 && <div>No Results yet</div>}
       {results && results.length > 0 && (
-        <Fragment>
-          <table>
+        <>
+          <table className="quali-results">
             <thead>
               <tr>
                 <th>Position</th>
@@ -24,11 +23,32 @@ const QualifyingResult = ({ results }) => {
               {results.map((result) => (
                 <tr key={result.number}>
                   <td>{result.position}</td>
-                  <td>{result.number}</td>
                   <td>
-                    {result.Driver.givenName} {result.Driver.familyName}
+                    <div className="driver-number">
+                      <img
+                        src={`../imgs/drivers/numbers/${result.Driver.driverId}.png`}
+                        alt=""
+                      />
+                    </div>
                   </td>
-                  <td>{result.Constructor.name}</td>
+                  <td>
+                    <div className="driver">
+                      <img
+                        src={`../imgs/drivers/helmets/${result.Driver.driverId}.png`}
+                        alt=""
+                      />
+                      {result.Driver.givenName} {result.Driver.familyName}
+                    </div>
+                  </td>
+                  <td>
+                    <div className="constructor">
+                      <img
+                        src={`../imgs/constructors/${result.Constructor.constructorId}_logo.png`}
+                        alt=""
+                      />
+                      {result.Constructor.name}
+                    </div>
+                  </td>
                   <td>
                     {result.Q1 && <span className="time">{result.Q1}</span>}
                   </td>
@@ -42,9 +62,9 @@ const QualifyingResult = ({ results }) => {
               ))}
             </tbody>
           </table>
-        </Fragment>
+        </>
       )}
-    </Fragment>
+    </>
   );
 };
 
