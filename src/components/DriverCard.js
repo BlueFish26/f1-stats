@@ -19,20 +19,23 @@ const DriverCard = ({ driver }) => {
               </div>
             </div>
             <div className="flag">
-              <img src={`imgs/flags/${driver.Driver.nationality}.png`} alt="" />
+              <img
+                src={`../imgs/flags/${driver.Driver.nationality}.png`}
+                alt=""
+              />
             </div>
           </div>
           <div className="helmet-image">
             <div className="team-number">
               <span>{driver.Constructors[0].name}</span>
               <img
-                src={`imgs/drivers/numbers/${driver.Driver.driverId}.png`}
+                src={`../imgs/drivers/numbers/${driver.Driver.driverId}.png`}
                 alt=""
               />
             </div>
 
             <img
-              src={`imgs/drivers/helmets/${driver.Driver.driverId}.png`}
+              src={`../imgs/drivers/helmets/${driver.Driver.driverId}.png`}
               alt=""
             />
           </div>

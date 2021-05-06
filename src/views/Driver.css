@@ -1,0 +1,7 @@
+.card-wrapper {
+  width: 20%;
+}
+.driver-results {
+  display: flex;
+  flex-direction: row;
+}

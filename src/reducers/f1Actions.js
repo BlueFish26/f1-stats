@@ -36,7 +36,7 @@ export const getRaces = async (dispatch) => {
 export const getDrivers = async (dispatch) => {
   try {
     const data = await F1Database.getDrivers();
-    console.log(data);
+    console.log("getDrivers", data);
     dispatch({ type: "SET_DRIVERS", drivers: data });
   } catch (error) {
     console.error(error);
