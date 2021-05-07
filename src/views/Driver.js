@@ -1,10 +1,10 @@
-import "./Driver.css";
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { useF1Context } from "../contexts/F1Context";
-import DriverRaceGraph from "../components/DriverRaceGraph";
-import { getDrivers } from "../reducers/f1Actions";
-import DriverCard from "../components/DriverCard";
+import './Driver.css';
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { useF1Context } from '../contexts/F1Context';
+import DriverRaceGraph from '../components/DriverRaceGraph';
+import { getDrivers } from '../reducers/f1Actions';
+import DriverCardWide from '../components/DriverCardWide';
 const Driver = () => {
   const { driverId } = useParams();
   const [{ drivers }, dispatch] = useF1Context();
@@ -22,7 +22,7 @@ const Driver = () => {
         setThisDriver(
           drivers.filter((driver) => driver.Driver.driverId === driverId)[0]
         );
-        console.log("thisDriver", thisDriver);
+        console.log('thisDriver', thisDriver);
       }
     }
   }, [dispatch, driverId, drivers, thisDriver]);
@@ -32,11 +32,10 @@ const Driver = () => {
       <h1>Driver</h1>
       {thisDriver && (
         <>
-          <div className="card-wrapper">
-            <DriverCard driver={thisDriver} />
-          </div>
-          TODO: Add Accordion here, showing driver's race result , then inside
-          the accordion, load the graph
+          <DriverCardWide driver={thisDriver} />
+
+          {/* TODO: Add Accordion here, showing driver's race result , then inside
+          the accordion, load the graph */}
           <div className="driver-results">
             <DriverRaceGraph />
           </div>

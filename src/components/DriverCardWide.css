@@ -1,0 +1,141 @@
+:root {
+  --mercedes: #00d2be;
+  --ferrari: #dc0000;
+  --red_bull: #0600ef;
+  --mclaren: #ff9800;
+  --aplhatauri: #2b4562;
+  --alpine: #0090ff;
+  --aston_martin: #006f62;
+  --alfa: #900000;
+  --williams: #005aff;
+  --hass: #5b5959;
+}
+.field-driver-card-wide {
+  border: 0;
+  padding: 1rem 0.5rem;
+  margin: 1rem 0.5rem;
+  border: solid 1px #5b5959;
+  border-radius: 0.4rem;
+  margin: 1rem 0.5rem;
+  cursor: pointer;
+}
+.field-driver-card-wide:hover {
+  border: solid 1px #000;
+  box-shadow: 1px 1px;
+}
+.field-driver-card-wide .item {
+  color: #000;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-column-gap: 0.5rem;
+  grid-row-gap: 0.5rem;
+  /*display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;*/
+}
+.field-driver-card-wide .item .standing {
+  margin: 0.5rem;
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+}
+.field-driver-card-wide .item .standing .rank,
+.field-driver-card-wide .item .standing .points {
+  font-weight: bold;
+  font-size: 1.6rem;
+}
+.field-driver-card-wide .item .info {
+  margin: 0 0.5rem;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+.field-driver-card-wide .item .info .name {
+  margin: 0.5rem;
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+}
+.field-driver-card-wide .item .info .name div {
+  display: flex;
+  flex-direction: row;
+}
+.field-driver-card-wide .item .info .name .driver {
+  text-transform: uppercase;
+  margin-left: 0.6rem;
+}
+.field-driver-card-wide .item .info .name .driver::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 2px;
+  background: #dc0000;
+  position: absolute;
+}
+.field-driver-card-wide .item .info .name .driver.mercedes::after {
+  background: var(--mercedes);
+}
+.field-driver-card-wide .item .info .name .driver.ferrari::after {
+  background: var(--ferrari);
+}
+.field-driver-card-wide .item .info .name .driver.red_bull::after {
+  background: var(--red_bull);
+}
+.field-driver-card-wide .item .info .name .driver.mclaren::after {
+  background: var(--mclaren);
+}
+.field-driver-card-wide .item .info .name .driver.alphatauri::after {
+  background: var(--aplhatauri);
+}
+.field-driver-card-wide .item .info .name .driver.aston_martin::after {
+  background: var(--aston_martin);
+}
+.field-driver-card-wide .item .info .name .driver.alpine::after {
+  background: var(--alpine);
+}
+.field-driver-card-wide .item .info .name .driver.alfa::after {
+  background: var(--alfa);
+}
+.field-driver-card-wide .item .info .name .driver.williams::after {
+  background: var(--williams);
+}
+.field-driver-card-wide .item .info .name .driver.haas::after {
+  background: var(--hass);
+}
+.field-driver-card-wide .item .info .flag img {
+  max-width: 50px;
+}
+.field-driver-card-wide .item .helmet-image {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+}
+.field-driver-card-wide .item .helmet-image .team-number {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.field-driver-card-wide .item .helmet-image .team-number span {
+  font-size: 1rem;
+  margin: 0.5rem 1rem;
+  color: #67676d;
+  text-transform: uppercase;
+}
+.field-driver-card-wide .item .helmet-image .team-number img {
+  height: 5vh;
+  max-width: 60px;
+  margin-right: 0;
+}
+.field-driver-card-wide .item .helmet-image img {
+  height: 10vh;
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
