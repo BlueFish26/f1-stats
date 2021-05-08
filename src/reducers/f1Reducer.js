@@ -10,6 +10,22 @@ const f1Reducer = (state, action) => {
       return { ...state, races: action.races };
     case "SET_DRIVERS":
       return { ...state, drivers: action.drivers };
+    case "SET_DRIVER_SEASON_RESULTS":
+      console.log("SET_DRIVER_SEASON_RESULTS");
+      console.log("action.results", action.results);
+      if (action.results) {
+        const driverId = action.results.driverId;
+        const updatedDrivers = state.drivers.reduce((initial, current) => {
+          if (current.Driver.driverId === driverId) {
+            current.SeasonResults = action.results.data;
+          }
+          initial.push(current);
+          return initial;
+        }, []);
+
+        return { ...state, drivers: updatedDrivers };
+      }
+      return state;
     case "SET_RACE_RESULT":
       if (action.results && state.races) {
         /*

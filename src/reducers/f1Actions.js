@@ -42,7 +42,18 @@ export const getDrivers = async (dispatch) => {
     console.error(error);
   }
 };
-
+export const getDriverSeasonResults = async (driverId, dispatch) => {
+  try {
+    const data = await F1Database.getDriverSeasonResults(driverId);
+    console.log("getDriverSeasonResults", data);
+    dispatch({
+      type: "SET_DRIVER_SEASON_RESULTS",
+      results: { driverId, data },
+    });
+  } catch (error) {
+    console.error(error);
+  }
+};
 export const setRaceResult = async (round, dispatch) => {
   try {
     const race = await F1Database.getRaceResults(round);
@@ -61,6 +72,7 @@ export const setQualifyingResult = async (round, dispatch) => {
     console.error(error);
   }
 };
+
 /*
 function getDriversLapTimes(round, race, dispatch) {
   //TODO: This is very slow, find a new way to optimize, or re-design data presentation

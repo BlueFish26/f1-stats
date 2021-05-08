@@ -116,6 +116,22 @@ const F1Database = (function () {
     }
   };
 
+  const getDriverSeasonResults = async (driverId) => {
+    try {
+      const response = await axios.get(
+        `http://ergast.com/api/f1/current/drivers/${driverId}/results.json`
+      );
+      let data = [];
+      if (response.data.MRData.RaceTable.Races[0]) {
+        data = response.data.MRData.RaceTable.Races;
+      }
+      return data;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  };
+
   const getRaceLapTimesForDriver = async (round, driverId) => {
     try {
       const response = await axios.get(
@@ -136,6 +152,7 @@ const F1Database = (function () {
     getConstructors,
     getRaces,
     getDrivers,
+    getDriverSeasonResults,
     getRaceResults,
     getQualifyingResults,
     getRaceLapTimesForDriver,

@@ -1,15 +1,3 @@
-:root {
-  --mercedes: #00d2be;
-  --ferrari: #dc0000;
-  --red_bull: #0600ef;
-  --mclaren: #ff9800;
-  --aplhatauri: #2b4562;
-  --alpine: #0090ff;
-  --aston_martin: #006f62;
-  --alfa: #900000;
-  --williams: #005aff;
-  --hass: #5b5959;
-}
 .field-driver-card {
   border: 0;
   padding: 0;

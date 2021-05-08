@@ -1,13 +1,14 @@
-import { useEffect, useState } from 'react';
-import { Line } from 'react-chartjs-2';
-import F1Database from '../data/F1Database';
+import { useEffect, useState } from "react";
+import { Line } from "react-chartjs-2";
+import F1Database from "../data/F1Database";
 
 const formatTime = (seconds) => {
-  return new Date(seconds * 1000).toISOString().substr(15, 8);
+  seconds = seconds.toString().replace(",", "");
+  return new Date(+seconds * 1000).toISOString().substr(15, 8);
 };
 
 const getSeconds = (duration) => {
-  let timeSegments = duration.split(':');
+  let timeSegments = duration.split(":");
   return +timeSegments[0] * 60 + +timeSegments[1];
 };
 
@@ -15,15 +16,15 @@ const options = {
   resposive: true,
   scales: {
     y: {
-      type: 'linear',
+      type: "linear",
       ticks: {
         callback: (secs) => formatTime(secs),
       },
     },
     y1: {
-      type: 'linear',
+      type: "linear",
       display: true,
-      position: 'right',
+      position: "right",
       min: 0,
       max: 20,
       grid: {
@@ -36,7 +37,7 @@ const options = {
       callbacks: {
         title: (tooltipItem) => `Lap ${tooltipItem[0].label}`,
         label: (tooltipItem) => {
-          if (tooltipItem.dataset.label === 'Track Position') {
+          if (tooltipItem.dataset.label === "Track Position") {
             return `P${tooltipItem.formattedValue}`;
           } else {
             return formatTime(tooltipItem.formattedValue);
@@ -47,14 +48,15 @@ const options = {
   },
 };
 
-const DriverRaceGraph = () => {
+const DriverRaceGraph = ({ round, driverId }) => {
   const [raceData, setRaceData] = useState({});
 
   useEffect(() => {
     const loadLapTimes = async () => {
+      console.log(round, driverId);
       const driverLapTimes = await F1Database.getRaceLapTimesForDriver(
-        1,
-        'ricciardo'
+        round,
+        driverId
       );
       const laps = driverLapTimes.lap_times.map((lap) => lap.number);
       const lapTimes = driverLapTimes.lap_times.map((lap) =>
@@ -67,30 +69,30 @@ const DriverRaceGraph = () => {
         labels: laps,
         datasets: [
           {
-            label: 'Lap Times',
+            label: "Lap Times",
             data: lapTimes,
             fill: false,
             tension: 0.2,
-            backgroundColor: '#A6381F',
-            borderColor: '#DE2B1B',
+            backgroundColor: "#A6381F",
+            borderColor: "#DE2B1B",
             borderDash: [5, 5],
-            yAxisID: 'y',
+            yAxisID: "y",
           },
           {
-            label: 'Track Position',
+            label: "Track Position",
             data: trackPositions,
             fill: false,
             tension: 0.2,
-            backgroundColor: '#303E8C',
-            borderColor: '#023059',
-            yAxisID: 'y1',
+            backgroundColor: "#303E8C",
+            borderColor: "#023059",
+            yAxisID: "y1",
           },
         ],
       };
       setRaceData(_raceData);
     };
     loadLapTimes();
-  }, []);
+  }, [round, driverId]);
 
   return (
     <>
