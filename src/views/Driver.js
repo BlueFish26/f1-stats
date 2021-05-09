@@ -1,11 +1,11 @@
-import "./Driver.css";
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { useF1Context } from "../contexts/F1Context";
-import { getDrivers, getDriverSeasonResults } from "../reducers/f1Actions";
-import Accordion from "../components/Accordion";
-import DriverCardWide from "../components/DriverCardWide";
-import DriverRaceGraph from "../components/DriverRaceGraph";
+import './Driver.css';
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { useF1Context } from '../contexts/F1Context';
+import { getDrivers, getDriverSeasonResults } from '../reducers/f1Actions';
+import Accordion from '../components/Accordion';
+import DriverCardWide from '../components/DriverCardWide';
+import DriverRaceGraph from '../components/DriverRaceGraph';
 const Driver = () => {
   const { driverId } = useParams();
   const [{ drivers }, dispatch] = useF1Context();
@@ -33,7 +33,7 @@ const Driver = () => {
           drivers.filter((driver) => driver.Driver.driverId === driverId)[0]
         );
       }
-      console.log("thisDriver", thisDriver);
+      console.log('thisDriver', thisDriver);
     }
   }, [dispatch, driverId, drivers, thisDriver]);
 
@@ -49,7 +49,28 @@ const Driver = () => {
           {thisDriver.SeasonResults && (
             <Accordion title="">
               {thisDriver.SeasonResults.map((race) => {
-                const title = `${race.raceName} - ${race.Circuit.circuitName}`;
+                const title = (
+                  <>
+                    <div className="race-item">
+                      <img
+                        src={`../imgs/flags/${race.Circuit.Location.country}.png`}
+                        alt=""
+                      />
+                      <div className="race-circuit">
+                        {`${race.raceName} - ${race.Circuit.circuitName}`}
+                      </div>
+                      <div className="driver-points">
+                        {race.Results[0].position <= 3 && (
+                          <i
+                            className={`fa fa-trophy _${race.Results[0].position}`}
+                            aria-hidden="true"
+                          ></i>
+                        )}
+                        {` P${race.Results[0].position} - ${race.Results[0].points} pts`}
+                      </div>
+                    </div>
+                  </>
+                );
                 return (
                   <Accordion.Item
                     key={race.round}

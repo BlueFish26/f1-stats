@@ -5,3 +5,35 @@
   display: flex;
   flex-direction: row;
 }
+.race-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+}
+.race-item img {
+  max-width: 50px;
+  margin-right: 0.5rem;
+}
+.race-item .race-circuit {
+  margin-right: 0.5rem;
+  width: 100%;
+}
+.race-item .driver-points {
+  text-align: center;
+  width: 20%;
+  margin-right: 0.5rem;
+  border: 1px solid;
+  border-radius: 0.8rem;
+  padding: 0.2rem 0.3rem;
+}
+.race-item .driver-points i._1 {
+  color: gold;
+}
+.race-item .driver-points i._2 {
+  color: silver;
+}
+.race-item .driver-points i._3 {
+  color: #cd7f32;
+}

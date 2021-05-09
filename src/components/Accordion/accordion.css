@@ -38,6 +38,7 @@
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.5);
+  width: 97%;
 }
 
 .accordion-item {
@@ -54,6 +55,7 @@
   background: #2c3e50;
   font-weight: bold;
   cursor: pointer;
+  border-bottom: 1px dashed #eee;
   /* Icon */
 }
 .accordion-item-label:hover {
