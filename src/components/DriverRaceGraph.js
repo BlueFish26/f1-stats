@@ -94,9 +94,9 @@ const DriverRaceGraph = ({ round, driverId }) => {
           {
             label: 'Lap Time',
             data: lapTimes,
-            fill: false,
+            fill: true,
             tension: 0.2,
-            backgroundColor: '#A6381F',
+            backgroundColor: '#add8e6',
             borderColor: '#DE2B1B',
             borderDash: [5, 5],
             yAxisID: 'y',
