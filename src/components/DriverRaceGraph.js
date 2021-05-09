@@ -1,14 +1,14 @@
-import { useEffect, useState } from "react";
-import { Line } from "react-chartjs-2";
-import F1Database from "../data/F1Database";
+import { useEffect, useState } from 'react';
+import { Line } from 'react-chartjs-2';
+import F1Database from '../data/F1Database';
 
 const formatTime = (seconds) => {
-  seconds = seconds.toString().replace(",", "");
+  seconds = seconds.toString().replace(',', '');
   return new Date(+seconds * 1000).toISOString().substr(15, 8);
 };
 
 const getSeconds = (duration) => {
-  let timeSegments = duration.split(":");
+  let timeSegments = duration.split(':');
   return +timeSegments[0] * 60 + +timeSegments[1];
 };
 
@@ -16,15 +16,15 @@ const options = {
   resposive: true,
   scales: {
     y: {
-      type: "linear",
+      type: 'linear',
       ticks: {
         callback: (secs) => formatTime(secs),
       },
     },
     y1: {
-      type: "linear",
+      type: 'linear',
       display: true,
-      position: "right",
+      position: 'right',
       min: 0,
       max: 20,
       grid: {
@@ -37,7 +37,7 @@ const options = {
       callbacks: {
         title: (tooltipItem) => `Lap ${tooltipItem[0].label}`,
         label: (tooltipItem) => {
-          if (tooltipItem.dataset.label.includes("Track Position")) {
+          if (tooltipItem.dataset.label.includes('Track Position')) {
             return `${tooltipItem.dataset.label} - P${tooltipItem.formattedValue}`;
           } else {
             return `${tooltipItem.dataset.label} - ${formatTime(
@@ -82,22 +82,22 @@ const DriverRaceGraph = ({ round, driverId }) => {
         labels: laps,
         datasets: [
           {
-            label: "Lap Time",
+            label: 'Lap Time',
             data: lapTimes,
             fill: false,
             tension: 0.2,
-            backgroundColor: "#d64161",
-            borderColor: "#feb236",
-            yAxisID: "y",
+            backgroundColor: '#feb236',
+            borderColor: '#feb236',
+            yAxisID: 'y',
           },
           {
-            label: "Track Position",
+            label: 'Track Position',
             data: trackPositions,
             fill: false,
             tension: 0.2,
-            backgroundColor: "#303E8C",
-            borderColor: "#023059",
-            yAxisID: "y1",
+            backgroundColor: '#023059',
+            borderColor: '#023059',
+            yAxisID: 'y1',
           },
         ],
       };
