@@ -1,11 +1,11 @@
-import './Driver.css';
-import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { useF1Context } from '../contexts/F1Context';
-import { getDrivers, getDriverSeasonResults } from '../reducers/f1Actions';
-import Accordion from '../components/Accordion';
-import DriverCardWide from '../components/DriverCardWide';
-import DriverRaceGraph from '../components/DriverRaceGraph';
+import "./Driver.css";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { useF1Context } from "../contexts/F1Context";
+import { getDrivers, getDriverSeasonResults } from "../reducers/f1Actions";
+import Accordion from "../components/Accordion";
+import DriverCardWide from "../components/DriverCardWide";
+import DriverRaceGraph from "../components/DriverRaceGraph";
 const Driver = () => {
   const { driverId } = useParams();
   const [{ drivers }, dispatch] = useF1Context();
@@ -27,13 +27,13 @@ const Driver = () => {
       }
     };
     loadDrivers();
+
     if (drivers && drivers.length > 0) {
-      if (!thisDriver) {
+      if (!thisDriver || (thisDriver && !thisDriver.SeasonResults)) {
         setThisDriver(
           drivers.filter((driver) => driver.Driver.driverId === driverId)[0]
         );
       }
-      console.log('thisDriver', thisDriver);
     }
   }, [dispatch, driverId, drivers, thisDriver]);
 
@@ -43,9 +43,8 @@ const Driver = () => {
       {thisDriver && (
         <>
           <DriverCardWide driver={thisDriver} />
-          {/* TODO: Add Accordion here, 
-              showing driver's race result , then inside
-             the accordion, load the graph */}
+          {/* Accordion showing driver's race result ,
+              then inside the accordion, load the graph */}
           {thisDriver.SeasonResults && (
             <Accordion title="">
               {thisDriver.SeasonResults.map((race) => {

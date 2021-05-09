@@ -17,6 +17,7 @@ const f1Reducer = (state, action) => {
         const driverId = action.results.driverId;
         const updatedDrivers = state.drivers.reduce((initial, current) => {
           if (current.Driver.driverId === driverId) {
+            console.log("action.results.data", action.results.data);
             current.SeasonResults = action.results.data;
           }
           initial.push(current);
