@@ -1,11 +1,17 @@
 export class Driver {
-  constructor() {
-    this.driverId = '';
-    this.permanentNumber = 0;
-    this.code = '';
+  constructor(
+    driverId = '',
+    permanentNumber = 0,
+    code = '',
+    givenName = '',
+    familyName = ''
+  ) {
+    this.driverId = driverId;
+    this.permanentNumber = permanentNumber;
+    this.code = code;
     this.url = '';
-    this.givenName = '';
-    this.familyName = '';
+    this.givenName = givenName;
+    this.familyName = familyName;
     this.dateOfBirth = '';
     this.nationality = '';
   }

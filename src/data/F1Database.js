@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { Constructor } from '../models/Constructor';
+import { Driver } from '../models/Driver';
 
 //Revealing Module Pattern
 const F1Database = (function () {
@@ -13,7 +14,21 @@ const F1Database = (function () {
       );
       const data = response.data.MRData.DriverTable.Drivers;
       console.log('Drivers ▶️', data);
-      return data;
+      return data.map((d) => {
+        let driver = new Driver(
+          d.driverId,
+          d.permanentNumber,
+          d.code,
+          d.givenName,
+          d.familyName
+        );
+        driver.url = d.url;
+        driver.nationality = d.nationality;
+        driver.dateOfBirth = d.dateOfBirth;
+        console.log(driver.constructor.name);
+        return driver;
+      });
+      //return data;
     } catch (error) {
       console.error(error);
       return null;
@@ -41,6 +56,7 @@ const F1Database = (function () {
             return constructor;
           }
         );
+
       console.log('_constructors', _constructors);
       // append drivers
       let updatedConstructors = await constructors.reduce(
