@@ -49,6 +49,7 @@
 }
 .field-constructor-card .item .info .name .flag {
   max-width: 50px;
+  margin-right: 0.5rem;
 }
 .field-constructor-card .item .info .logo img {
   max-width: 50px;
@@ -77,7 +78,7 @@
   font-size: 1rem;
 }
 .field-constructor-card .item .drivers .driver .name::after {
-  content: "";
+  content: '';
   display: block;
   width: 130px;
   height: 2px;

@@ -13,7 +13,7 @@ const ConstructorCard = ({ constructor }) => {
             <div className="name">
               <img
                 className="flag"
-                src={`imgs/flags/${constructor.Constructor.nationality}.jpg`}
+                src={`imgs/flags/${constructor.Constructor.nationality}.png`}
                 alt=""
               />
               <span className="team">{constructor.Constructor.name}</span>

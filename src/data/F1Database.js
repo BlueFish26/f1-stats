@@ -1,8 +1,9 @@
-import axios from "axios";
+import axios from 'axios';
+import { Constructor } from '../models/Constructor';
 
 //Revealing Module Pattern
 const F1Database = (function () {
-  const apiEndpoint = "http://ergast.com/api/f1";
+  const apiEndpoint = 'http://ergast.com/api/f1';
 
   //private method
   async function getConstructorDrivers(constructorId) {
@@ -11,7 +12,7 @@ const F1Database = (function () {
         `http://ergast.com/api/f1/current/constructors/${constructorId}/drivers.json`
       );
       const data = response.data.MRData.DriverTable.Drivers;
-      console.log("Drivers ▶️", data);
+      console.log('Drivers ▶️', data);
       return data;
     } catch (error) {
       console.error(error);
@@ -23,11 +24,24 @@ const F1Database = (function () {
   const getConstructors = async () => {
     try {
       const response = await axios.get(
-        "http://ergast.com/api/f1/current/constructorStandings.json"
+        'http://ergast.com/api/f1/current/constructorStandings.json'
       );
       let constructors =
         response.data.MRData.StandingsTable.StandingsLists[0]
           .ConstructorStandings;
+
+      let _constructors =
+        response.data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings.map(
+          (result) => {
+            const { constructorId, name, nationality, url } =
+              result.Constructor;
+            let constructor = new Constructor(constructorId, name, nationality);
+            constructor.url = url;
+            console.log(constructor.constructor.name);
+            return constructor;
+          }
+        );
+      console.log('_constructors', _constructors);
       // append drivers
       let updatedConstructors = await constructors.reduce(
         async (initial, current) => {
@@ -54,9 +68,9 @@ const F1Database = (function () {
       let data = response.data.MRData.RaceTable.Races;
       data.map((race) => {
         switch (race.Circuit.circuitId) {
-          case "ricard":
-          case "silverstone":
-          case "zandvoort":
+          case 'ricard':
+          case 'silverstone':
+          case 'zandvoort':
             race.Circuit.circuitImagePath = `imgs/circuits/${race.Circuit.circuitId}.png`;
             break;
           default:

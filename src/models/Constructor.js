@@ -1,18 +1,23 @@
-export const ConstructorStandings = {
-  position: '',
-  positionText: '',
-  points: 0,
-  wins: 0,
-  Constructor: {},
-};
+export class ConstructorStandings {
+  constructor() {
+    this.position = '';
+    this.positionText = '';
+    this.points = 0;
+    this.wins = 0;
+    this.Constructor = new Constructor();
+  }
+}
 
-export const Constructor = {
-  constructorId: '',
-  url: '',
-  name: '',
-  nationality: '',
-  drivers: [],
-  populateDrivers: (drivers) => {
+export class Constructor {
+  constructor(constructorId = '', name = '', nationality = '') {
+    this.constructorId = constructorId;
+    this.url = '';
+    this.name = name;
+    this.nationality = nationality;
+    this.drivers = [];
+  }
+
+  PopulateDrivers = (drivers) => {
     this.drivers = drivers;
-  },
-};
+  };
+}
