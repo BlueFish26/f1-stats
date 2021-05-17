@@ -24,6 +24,14 @@ export const getConstructors = async (dispatch) => {
       const constructors = await dataProvider.loadConstructorsWithDrivers(
         "current"
       );
+      console.log(
+        "dataProvider.constructorStandings",
+        dataProvider.constructorStandings
+      );
+      console.log(
+        "dataProvider.getConstructorStandings(),",
+        dataProvider.getConstructorStandings()
+      );
 
       //const constructors = await ErgastF1API.getConstructors();
       //localStorage.setItem("f1-constructors", JSON.stringify(constructors));

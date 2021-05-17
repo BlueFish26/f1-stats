@@ -52,7 +52,7 @@ export default class ConstructorDataProvider {
 */
 
 const ConstructorDataProvider = (function () {
-  console.log("ConstructorDataProvider created.");
+  console.log("ConstructorDataProvider created. 👌");
   let api = null;
   let season = "";
   let constructorStandings = null;
@@ -98,9 +98,15 @@ const ConstructorDataProvider = (function () {
     return constructorStandings;
   };
 
+  const getConstructorStandings = () => {
+    return constructorStandings;
+  };
+
   return {
+    constructorStandings,
     setApi,
     loadConstructorsWithDrivers,
+    getConstructorStandings,
   };
 })();
 
