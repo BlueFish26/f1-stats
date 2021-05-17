@@ -1,7 +1,8 @@
 import axios from "axios";
 
 //Revealing Module Pattern
-const ErgastF1API = (function () {
+const F1API = (function () {
+  console.log("F1API created.");
   const apiEndpoint = "http://ergast.com/api/f1";
 
   //public methods
@@ -161,4 +162,4 @@ const ErgastF1API = (function () {
   };
 })();
 
-export default ErgastF1API;
+export default F1API;

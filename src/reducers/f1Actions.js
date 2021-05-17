@@ -1,9 +1,14 @@
-import ErgastF1API from "../data/ErgastF1API";
+import F1API from "../data/F1API";
 import ConstructorDataProvider from "../data/ConstructorDataProvider";
 
 export const getConstructors = async (dispatch) => {
   try {
-    const dataProvider = new ConstructorDataProvider(ErgastF1API);
+    //using class
+    //const dataProvider = new ConstructorDataProvider(ErgastF1API);
+    //using Revealing Module Pattern
+    const dataProvider = ConstructorDataProvider;
+    dataProvider.setApi(F1API);
+
     let data = [];
     if (localStorage.getItem("f1-constructors")) {
       data = JSON.parse(localStorage.getItem("f1-constructors"));
@@ -11,8 +16,14 @@ export const getConstructors = async (dispatch) => {
       return;
     }
     if (data.length === 0) {
-      await dataProvider.loadConstructorsWithDrivers("current");
-      const constructors = dataProvider.constructorStandings;
+      //using class
+      //await dataProvider.loadConstructorsWithDrivers("current");
+      //const constructors = dataProvider.constructorStandings;
+
+      //using Revealing Module Pattern
+      const constructors = await dataProvider.loadConstructorsWithDrivers(
+        "current"
+      );
 
       //const constructors = await ErgastF1API.getConstructors();
       //localStorage.setItem("f1-constructors", JSON.stringify(constructors));
@@ -31,7 +42,7 @@ export const getRaces = async (dispatch) => {
       dispatch({ type: "SET_RACES", races: data });
       return;
     }
-    const data = await ErgastF1API.getRaces();
+    const data = await F1API.getRaces();
     localStorage.setItem("f1-races", JSON.stringify(data));
     dispatch({ type: "SET_RACES", races: data });
   } catch (error) {
@@ -41,7 +52,7 @@ export const getRaces = async (dispatch) => {
 
 export const getDrivers = async (dispatch) => {
   try {
-    const data = await ErgastF1API.getDrivers();
+    const data = await F1API.getDrivers();
     console.log("getDrivers", data);
     dispatch({ type: "SET_DRIVERS", drivers: data });
   } catch (error) {
@@ -50,7 +61,7 @@ export const getDrivers = async (dispatch) => {
 };
 export const getDriverSeasonResults = async (driverId, dispatch) => {
   try {
-    const data = await ErgastF1API.getDriverSeasonResults(driverId);
+    const data = await F1API.getDriverSeasonResults(driverId);
     console.log("getDriverSeasonResults", data);
     dispatch({
       type: "SET_DRIVER_SEASON_RESULTS",
@@ -62,7 +73,7 @@ export const getDriverSeasonResults = async (driverId, dispatch) => {
 };
 export const setRaceResult = async (round, dispatch) => {
   try {
-    const race = await ErgastF1API.getRaceResults(round);
+    const race = await F1API.getRaceResults(round);
     dispatch({ type: "SET_RACE_RESULT", round: round, results: race });
     //getDriversLapTimes(round, race, dispatch);
   } catch (error) {
@@ -72,7 +83,7 @@ export const setRaceResult = async (round, dispatch) => {
 
 export const setQualifyingResult = async (round, dispatch) => {
   try {
-    const data = await ErgastF1API.getQualifyingResults(round);
+    const data = await F1API.getQualifyingResults(round);
     dispatch({ type: "SET_QUALIFYING_RESULT", round: round, results: data });
   } catch (error) {
     console.error(error);
