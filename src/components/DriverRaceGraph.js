@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
-import F1Database from '../data/F1Database';
+import ErgastF1API from '../data/ErgastF1API';
 
 const formatTime = (seconds) => {
   seconds = seconds.toString().replace(',', '');
@@ -67,7 +67,7 @@ const DriverRaceGraph = ({ round, driverId }) => {
         (lap) => lap.Timings[0].position
       );      
       */
-      const driverLapTimes = await F1Database.getRaceLapTimesForDriver(
+      const driverLapTimes = await ErgastF1API.getRaceLapTimesForDriver(
         round,
         driverId
       );

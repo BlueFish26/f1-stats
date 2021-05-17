@@ -3,11 +3,14 @@ import { Constructor } from '../models/Constructor';
 import { Driver } from '../models/Driver';
 
 //Revealing Module Pattern
-const F1Database = (function () {
+const ErgastF1API = (function () {
   const apiEndpoint = 'http://ergast.com/api/f1';
 
   //private method
-  async function getConstructorDrivers(constructorId) {
+  async function _getConstructorDrivers(id) {
+    return null;
+  }
+  const getConstructorDrivers = async (constructorId) => {
     try {
       const response = await axios.get(
         `http://ergast.com/api/f1/current/constructors/${constructorId}/drivers.json`
@@ -33,13 +36,13 @@ const F1Database = (function () {
       console.error(error);
       return null;
     }
-  }
+  };
 
   //public methods
-  const getConstructors = async () => {
+  const getConstructors = async (season) => {
     try {
       const response = await axios.get(
-        'http://ergast.com/api/f1/current/constructorStandings.json'
+        `http://ergast.com/api/f1/${season}/constructorStandings.json`
       );
       let constructors =
         response.data.MRData.StandingsTable.StandingsLists[0]
@@ -179,6 +182,7 @@ const F1Database = (function () {
   };
 
   return {
+    getConstructorDrivers,
     getConstructors,
     getRaces,
     getDrivers,
@@ -189,4 +193,4 @@ const F1Database = (function () {
   };
 })();
 
-export default F1Database;
+export default ErgastF1API;

@@ -1,7 +1,9 @@
-import F1Database from '../data/F1Database';
+import ErgastF1API from '../data/ErgastF1API';
+import ConstructorDataProvider from '../data/ConstructorDataProvider';
 
 export const getConstructors = async (dispatch) => {
   try {
+    const dataProvider = new ConstructorDataProvider(ErgastF1API);
     let data = [];
     if (localStorage.getItem('f1-constructors')) {
       data = JSON.parse(localStorage.getItem('f1-constructors'));
@@ -9,7 +11,8 @@ export const getConstructors = async (dispatch) => {
       return;
     }
     if (data.length === 0) {
-      const contructors = await F1Database.getConstructors();
+      const constructors = await dataProvider.getConstructors('current');
+      //const contructors = await ErgastF1API.getConstructors();
       //localStorage.setItem("f1-constructors", JSON.stringify(contructors));
       dispatch({ type: 'SET_CONSTRUCTORS', constructors: contructors });
     }
@@ -25,7 +28,7 @@ export const getRaces = async (dispatch) => {
       dispatch({ type: 'SET_RACES', races: data });
       return;
     }
-    const data = await F1Database.getRaces();
+    const data = await ErgastF1API.getRaces();
     localStorage.setItem('f1-races', JSON.stringify(data));
     dispatch({ type: 'SET_RACES', races: data });
   } catch (error) {
@@ -35,7 +38,7 @@ export const getRaces = async (dispatch) => {
 
 export const getDrivers = async (dispatch) => {
   try {
-    const data = await F1Database.getDrivers();
+    const data = await ErgastF1API.getDrivers();
     console.log('getDrivers', data);
     dispatch({ type: 'SET_DRIVERS', drivers: data });
   } catch (error) {
@@ -44,7 +47,7 @@ export const getDrivers = async (dispatch) => {
 };
 export const getDriverSeasonResults = async (driverId, dispatch) => {
   try {
-    const data = await F1Database.getDriverSeasonResults(driverId);
+    const data = await ErgastF1API.getDriverSeasonResults(driverId);
     console.log('getDriverSeasonResults', data);
     dispatch({
       type: 'SET_DRIVER_SEASON_RESULTS',
@@ -56,7 +59,7 @@ export const getDriverSeasonResults = async (driverId, dispatch) => {
 };
 export const setRaceResult = async (round, dispatch) => {
   try {
-    const race = await F1Database.getRaceResults(round);
+    const race = await ErgastF1API.getRaceResults(round);
     dispatch({ type: 'SET_RACE_RESULT', round: round, results: race });
     //getDriversLapTimes(round, race, dispatch);
   } catch (error) {
@@ -66,7 +69,7 @@ export const setRaceResult = async (round, dispatch) => {
 
 export const setQualifyingResult = async (round, dispatch) => {
   try {
-    const data = await F1Database.getQualifyingResults(round);
+    const data = await ErgastF1API.getQualifyingResults(round);
     dispatch({ type: 'SET_QUALIFYING_RESULT', round: round, results: data });
   } catch (error) {
     console.error(error);
@@ -79,7 +82,7 @@ function getDriversLapTimes(round, race, dispatch) {
   let driverLapTimes = race.reduce(async (initial, current) => {
     let collection = await initial;
 
-    const lapTimes = await F1Database.getRaceLapTimesForDriver(
+    const lapTimes = await ErgastF1API.getRaceLapTimesForDriver(
       round,
       current.Driver.driverId
     );
