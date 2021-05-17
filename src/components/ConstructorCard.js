@@ -1,4 +1,4 @@
-import './ConstructorCard.css';
+import "./ConstructorCard.css";
 
 const ConstructorCard = ({ constructor }) => {
   return (
@@ -31,32 +31,38 @@ const ConstructorCard = ({ constructor }) => {
               alt=""
             />
           </div>
-          <div className="drivers">
-            <div className="driver">
-              <div className={`name ${constructor.Constructor.constructorId}`}>
-                {constructor.drivers[0].givenName}{' '}
-                {constructor.drivers[0].familyName}
+          {constructor.Constructor.drivers.length > 0 && (
+            <div className="drivers">
+              <div className="driver">
+                <div
+                  className={`name ${constructor.Constructor.constructorId}`}
+                >
+                  {constructor.Constructor.drivers[0].givenName}{" "}
+                  {constructor.Constructor.drivers[0].familyName}
+                </div>
+                <div className="image">
+                  <img
+                    src={`imgs/drivers/helmets/${constructor.Constructor.drivers[0].driverId}.png`}
+                    alt=""
+                  />
+                </div>
               </div>
-              <div className="image">
-                <img
-                  src={`imgs/drivers/helmets/${constructor.drivers[0].driverId}.png`}
-                  alt=""
-                />
+              <div className="driver">
+                <div
+                  className={`name ${constructor.Constructor.constructorId}`}
+                >
+                  {constructor.Constructor.drivers[1].givenName}{" "}
+                  {constructor.Constructor.drivers[1].familyName}
+                </div>
+                <div className="image">
+                  <img
+                    src={`imgs/drivers/helmets/${constructor.Constructor.drivers[1].driverId}.png`}
+                    alt=""
+                  />
+                </div>
               </div>
             </div>
-            <div className="driver">
-              <div className={`name ${constructor.Constructor.constructorId}`}>
-                {constructor.drivers[1].givenName}{' '}
-                {constructor.drivers[1].familyName}
-              </div>
-              <div className="image">
-                <img
-                  src={`imgs/drivers/helmets/${constructor.drivers[1].driverId}.png`}
-                  alt=""
-                />
-              </div>
-            </div>
-          </div>
+          )}
         </div>
       </fieldset>
     </>

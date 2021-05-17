@@ -1,20 +1,23 @@
-import ErgastF1API from '../data/ErgastF1API';
-import ConstructorDataProvider from '../data/ConstructorDataProvider';
+import ErgastF1API from "../data/ErgastF1API";
+import ConstructorDataProvider from "../data/ConstructorDataProvider";
 
 export const getConstructors = async (dispatch) => {
   try {
     const dataProvider = new ConstructorDataProvider(ErgastF1API);
     let data = [];
-    if (localStorage.getItem('f1-constructors')) {
-      data = JSON.parse(localStorage.getItem('f1-constructors'));
-      dispatch({ type: 'SET_CONSTRUCTORS', constructors: data });
+    if (localStorage.getItem("f1-constructors")) {
+      data = JSON.parse(localStorage.getItem("f1-constructors"));
+      dispatch({ type: "SET_CONSTRUCTORS", constructors: data });
       return;
     }
     if (data.length === 0) {
-      const constructors = await dataProvider.getConstructors('current');
-      //const contructors = await ErgastF1API.getConstructors();
-      //localStorage.setItem("f1-constructors", JSON.stringify(contructors));
-      dispatch({ type: 'SET_CONSTRUCTORS', constructors: contructors });
+      await dataProvider.loadConstructorsWithDrivers("current");
+      const constructors = dataProvider.constructorStandings;
+
+      //const constructors = await ErgastF1API.getConstructors();
+      //localStorage.setItem("f1-constructors", JSON.stringify(constructors));
+      console.log("SET_CONTRUCTORS", constructors);
+      dispatch({ type: "SET_CONSTRUCTORS", constructors: constructors });
     }
   } catch (error) {
     console.error(error);
@@ -23,14 +26,14 @@ export const getConstructors = async (dispatch) => {
 
 export const getRaces = async (dispatch) => {
   try {
-    if (localStorage.getItem('f1-races')) {
-      const data = JSON.parse(localStorage.getItem('f1-races'));
-      dispatch({ type: 'SET_RACES', races: data });
+    if (localStorage.getItem("f1-races")) {
+      const data = JSON.parse(localStorage.getItem("f1-races"));
+      dispatch({ type: "SET_RACES", races: data });
       return;
     }
     const data = await ErgastF1API.getRaces();
-    localStorage.setItem('f1-races', JSON.stringify(data));
-    dispatch({ type: 'SET_RACES', races: data });
+    localStorage.setItem("f1-races", JSON.stringify(data));
+    dispatch({ type: "SET_RACES", races: data });
   } catch (error) {
     console.error(error);
   }
@@ -39,8 +42,8 @@ export const getRaces = async (dispatch) => {
 export const getDrivers = async (dispatch) => {
   try {
     const data = await ErgastF1API.getDrivers();
-    console.log('getDrivers', data);
-    dispatch({ type: 'SET_DRIVERS', drivers: data });
+    console.log("getDrivers", data);
+    dispatch({ type: "SET_DRIVERS", drivers: data });
   } catch (error) {
     console.error(error);
   }
@@ -48,9 +51,9 @@ export const getDrivers = async (dispatch) => {
 export const getDriverSeasonResults = async (driverId, dispatch) => {
   try {
     const data = await ErgastF1API.getDriverSeasonResults(driverId);
-    console.log('getDriverSeasonResults', data);
+    console.log("getDriverSeasonResults", data);
     dispatch({
-      type: 'SET_DRIVER_SEASON_RESULTS',
+      type: "SET_DRIVER_SEASON_RESULTS",
       results: { driverId, data },
     });
   } catch (error) {
@@ -60,7 +63,7 @@ export const getDriverSeasonResults = async (driverId, dispatch) => {
 export const setRaceResult = async (round, dispatch) => {
   try {
     const race = await ErgastF1API.getRaceResults(round);
-    dispatch({ type: 'SET_RACE_RESULT', round: round, results: race });
+    dispatch({ type: "SET_RACE_RESULT", round: round, results: race });
     //getDriversLapTimes(round, race, dispatch);
   } catch (error) {
     console.error(error);
@@ -70,7 +73,7 @@ export const setRaceResult = async (round, dispatch) => {
 export const setQualifyingResult = async (round, dispatch) => {
   try {
     const data = await ErgastF1API.getQualifyingResults(round);
-    dispatch({ type: 'SET_QUALIFYING_RESULT', round: round, results: data });
+    dispatch({ type: "SET_QUALIFYING_RESULT", round: round, results: data });
   } catch (error) {
     console.error(error);
   }

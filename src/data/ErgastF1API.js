@@ -1,67 +1,34 @@
-import axios from 'axios';
-import { Constructor } from '../models/Constructor';
-import { Driver } from '../models/Driver';
+import axios from "axios";
 
 //Revealing Module Pattern
 const ErgastF1API = (function () {
-  const apiEndpoint = 'http://ergast.com/api/f1';
+  const apiEndpoint = "http://ergast.com/api/f1";
 
-  //private method
-  async function _getConstructorDrivers(id) {
-    return null;
-  }
-  const getConstructorDrivers = async (constructorId) => {
+  //public methods
+  const getConstructorDrivers = async (season, constructorId) => {
     try {
       const response = await axios.get(
-        `http://ergast.com/api/f1/current/constructors/${constructorId}/drivers.json`
+        `http://ergast.com/api/f1/${season}/constructors/${constructorId}/drivers.json`
       );
       const data = response.data.MRData.DriverTable.Drivers;
-      console.log('Drivers ▶️', data);
-      return data.map((d) => {
-        let driver = new Driver(
-          d.driverId,
-          d.permanentNumber,
-          d.code,
-          d.givenName,
-          d.familyName
-        );
-        driver.url = d.url;
-        driver.nationality = d.nationality;
-        driver.dateOfBirth = d.dateOfBirth;
-        console.log(driver.constructor.name);
-        return driver;
-      });
-      //return data;
+      console.log("Drivers ▶️", data);
+      return data;
     } catch (error) {
       console.error(error);
       return null;
     }
   };
 
-  //public methods
   const getConstructors = async (season) => {
     try {
       const response = await axios.get(
         `http://ergast.com/api/f1/${season}/constructorStandings.json`
       );
-      let constructors =
-        response.data.MRData.StandingsTable.StandingsLists[0]
-          .ConstructorStandings;
+      return response.data.MRData.StandingsTable.StandingsLists[0]
+        .ConstructorStandings;
 
-      let _constructors =
-        response.data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings.map(
-          (result) => {
-            const { constructorId, name, nationality, url } =
-              result.Constructor;
-            let constructor = new Constructor(constructorId, name, nationality);
-            constructor.url = url;
-            console.log(constructor.constructor.name);
-            return constructor;
-          }
-        );
-
-      console.log('_constructors', _constructors);
       // append drivers
+      /*
       let updatedConstructors = await constructors.reduce(
         async (initial, current) => {
           let collection = await initial;
@@ -75,6 +42,7 @@ const ErgastF1API = (function () {
       );
 
       return updatedConstructors;
+      */
     } catch (error) {
       console.log(error);
       return null;
@@ -87,9 +55,9 @@ const ErgastF1API = (function () {
       let data = response.data.MRData.RaceTable.Races;
       data.map((race) => {
         switch (race.Circuit.circuitId) {
-          case 'ricard':
-          case 'silverstone':
-          case 'zandvoort':
+          case "ricard":
+          case "silverstone":
+          case "zandvoort":
             race.Circuit.circuitImagePath = `imgs/circuits/${race.Circuit.circuitId}.png`;
             break;
           default:

@@ -12,6 +12,7 @@ const Driver = () => {
   const [thisDriver, setThisDriver] = useState(null);
 
   useEffect(() => {
+    let mounted = true;
     const loadDrivers = async () => {
       if (drivers.length === 0) {
         await getDrivers(dispatch);
@@ -27,7 +28,7 @@ const Driver = () => {
       }
     };
     loadDrivers();
-
+    console.log("mounted", mounted);
     if (drivers && drivers.length > 0) {
       if (!thisDriver || (thisDriver && !thisDriver.SeasonResults)) {
         setThisDriver(
@@ -35,6 +36,7 @@ const Driver = () => {
         );
       }
     }
+    return () => (mounted = false);
   }, [dispatch, driverId, drivers, thisDriver]);
 
   return (
