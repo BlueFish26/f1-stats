@@ -42,7 +42,6 @@ export const getConstructors = async (dispatch) => {
     console.error(error);
   }
 };
-
 export const getRaces = async (dispatch) => {
   try {
     if (localStorage.getItem("f1-races")) {
@@ -57,7 +56,6 @@ export const getRaces = async (dispatch) => {
     console.error(error);
   }
 };
-
 export const getDrivers = async (dispatch) => {
   try {
     const data = await F1API.getDrivers();
@@ -88,7 +86,6 @@ export const setRaceResult = async (round, dispatch) => {
     console.error(error);
   }
 };
-
 export const setQualifyingResult = async (round, dispatch) => {
   try {
     const data = await F1API.getQualifyingResults(round);
