@@ -1,5 +1,5 @@
-import { ConstructorStandings, Constructor } from "../models/Constructor";
-import { Driver } from "../models/Driver";
+import { ConstructorStandings, Constructor } from '../models/Constructor';
+import { Driver } from '../models/Driver';
 
 /*
 export default class ConstructorDataProvider {
@@ -52,9 +52,9 @@ export default class ConstructorDataProvider {
 */
 
 const ConstructorDataProvider = (function () {
-  console.log("ConstructorDataProvider created. 👌");
+  console.log('ConstructorDataProvider created. 👌');
   let api = null;
-  let season = "";
+  let season = '';
   let constructorStandings = null;
 
   const setApi = (_api) => {
@@ -80,15 +80,19 @@ const ConstructorDataProvider = (function () {
 
   const loadConstructorsWithDrivers = async (_season) => {
     season = _season;
+    //1.) call getConstructors API
     let response = await api.getConstructors(season);
     constructorStandings = await Promise.all(
       response.map(async (result) => {
+        //2.) parses API results to generate Data Model objects
         const { position, points, wins } = result;
         const { constructorId, name, nationality, url } = result.Constructor;
         let standing = new ConstructorStandings(position, points, wins);
         let constructor = new Constructor(constructorId, name, nationality);
         constructor.url = url;
+        //3.) load driver objects
         const drivers = await loadDrivers(constructorId);
+        //4.) populate/notify the Constructor object with Driver lineup
         constructor.PopulateDrivers(drivers);
         standing.Constructor = constructor;
         return standing;
