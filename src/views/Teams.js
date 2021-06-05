@@ -1,7 +1,7 @@
 import { Fragment, useEffect } from "react";
 import ConstructorCard from "../components/ConstructorCard";
 import { useF1Context } from "../contexts/F1Context";
-import { getConstructors } from "../reducers/f1Actions";
+import { getConstructors } from "../reducers/ConstructorActions";
 
 const Teams = () => {
   const [{ constructors }, dispatch] = useF1Context();

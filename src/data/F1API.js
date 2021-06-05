@@ -54,18 +54,6 @@ const F1API = (function () {
     try {
       const response = await axios.get(`${apiEndpoint}/current.json`);
       let data = response.data.MRData.RaceTable.Races;
-      data.map((race) => {
-        switch (race.Circuit.circuitId) {
-          case "ricard":
-          case "silverstone":
-          case "zandvoort":
-            race.Circuit.circuitImagePath = `imgs/circuits/${race.Circuit.circuitId}.png`;
-            break;
-          default:
-            race.Circuit.circuitImagePath = `imgs/circuits/${race.Circuit.circuitId}.svg`;
-        }
-        return race;
-      });
       return data;
     } catch (error) {
       console.log(error);

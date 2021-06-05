@@ -2,7 +2,8 @@ import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import RaceCard from "../components/RaceCard";
 import { useF1Context } from "../contexts/F1Context";
-import { getRaces } from "../reducers/f1Actions";
+import { getRaces } from "../reducers/RaceActions";
+
 const RaceSchedule = () => {
   const [{ races }, dispatch] = useF1Context();
   const history = useHistory();

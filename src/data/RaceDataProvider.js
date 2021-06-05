@@ -5,6 +5,7 @@ export default class RaceDataProvider {
     this.api = api;
     this.season = "current";
     this.races = [];
+    console.log("RaceDataProvider Created 🏍 ");
   }
 
   loadRaces = async (season) => {
@@ -14,7 +15,7 @@ export default class RaceDataProvider {
 
     let response = await this.api.getRaces(season);
 
-    const races = response.data.MRData.RaceTable.Races.map((race) => {
+    const _races = response.map((race) => {
       let circuitImagePath = "";
       switch (race.Circuit.circuitId) {
         case "ricard":
@@ -39,9 +40,10 @@ export default class RaceDataProvider {
         )
       );
       thisRace.Circuit.circuitImagePath = circuitImagePath;
+      //console.log(thisRace);
       return thisRace;
     });
-
-    this.races = races;
+    console.log("_race", _races);
+    this.races = _races;
   };
 }
