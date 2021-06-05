@@ -1,3 +1,5 @@
+import { Race, Circuit, Location } from "../models/Race";
+
 export default class RaceDataProvider {
   constructor(api) {
     this.api = api;
@@ -13,17 +15,31 @@ export default class RaceDataProvider {
     let response = await this.api.getRaces(season);
 
     const races = response.data.MRData.RaceTable.Races.map((race) => {
-      let circuitPath = "";
+      let circuitImagePath = "";
       switch (race.Circuit.circuitId) {
         case "ricard":
         case "silverstone":
         case "zandvoort":
-          circuitPath = `imgs/circuits/${race.Circuit.circuitId}.png`;
+          circuitImagePath = `imgs/circuits/${race.Circuit.circuitId}.png`;
           break;
         default:
-          circuitPath = `imgs/circuits/${race.Circuit.circuitId}.svg`;
+          circuitImagePath = `imgs/circuits/${race.Circuit.circuitId}.svg`;
       }
-      return new Race();
+      let thisRace = new Race(race.season, race.round, race.raceName);
+      thisRace.date = race.date;
+      thisRace.time = race.time;
+      thisRace.Circuit = new Circuit(
+        race.Circuit.circuitId,
+        race.Circuit.circuitName,
+        race.Circuit.url,
+        new Location(
+          race.Circuit.Location.lat,
+          race.Circuit.Location.long,
+          race.Circuit.Location.locality
+        )
+      );
+      thisRace.Circuit.circuitImagePath = circuitImagePath;
+      return thisRace;
     });
 
     this.races = races;

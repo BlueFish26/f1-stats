@@ -4,7 +4,7 @@ export const initialState = {
   constructors: [],
   drivers: [],
 };
-const f1Reducer = (state, action) => {
+const F1Reducer = (state, action) => {
   switch (action.type) {
     case "SET_RACES":
       return { ...state, races: action.races };
@@ -88,4 +88,4 @@ const f1Reducer = (state, action) => {
   }
 };
 
-export default f1Reducer;
+export default F1Reducer;

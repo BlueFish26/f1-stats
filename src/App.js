@@ -1,6 +1,6 @@
 import { Switch, Route } from "react-router-dom";
 import { F1ContextProvider } from "./contexts/F1Context";
-import f1Reducer, { initialState } from "./reducers/f1Reducer";
+import F1Reducer, { initialState } from "./reducers/F1Reducer";
 import NavBar from "./components/NavBar";
 import Teams from "./views/Teams";
 import Drivers from "./views/Drivers";
@@ -11,7 +11,7 @@ import Race from "./views/Race";
 const App = () => {
   return (
     <div className="App">
-      <F1ContextProvider initialState={initialState} reducer={f1Reducer}>
+      <F1ContextProvider initialState={initialState} reducer={F1Reducer}>
         <NavBar />
         <Switch>
           <Route path="/teams">

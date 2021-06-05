@@ -1,5 +1,6 @@
 import F1API from "../data/F1API";
 import ConstructorDataProvider from "../data/ConstructorDataProvider";
+import RaceDataProvider from "../data/RaceDataProvider";
 
 export const getConstructors = async (dispatch) => {
   try {
@@ -49,7 +50,12 @@ export const getRaces = async (dispatch) => {
       dispatch({ type: "SET_RACES", races: data });
       return;
     }
-    const data = await F1API.getRaces();
+
+    const dataProvider = RaceDataProvider(F1API);
+    dataProvider.loadRaces("current");
+    const data = dataProvider.races;
+
+    //const data = await F1API.getRaces();
     localStorage.setItem("f1-races", JSON.stringify(data));
     dispatch({ type: "SET_RACES", races: data });
   } catch (error) {
