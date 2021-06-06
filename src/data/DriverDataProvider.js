@@ -1,10 +1,11 @@
-import { Driver } from "../models/Driver";
+import { Constructor } from '../models/Constructor';
+import { Driver, DriverStandings } from '../models/Driver';
 
 export default class DriverDataProvider {
   constructor(api) {
     this.api = api;
     this.drivers = [];
-    console.log("DriverDataProvider Created 👌");
+    console.log('DriverDataProvider Created 👌');
   }
 
   getDrivers = async () => {
@@ -12,16 +13,28 @@ export default class DriverDataProvider {
       const drivers = await this.api.getDrivers();
       return drivers.map((d) => {
         let driver = new Driver(
-          d.driverId,
-          d.permanentNumber,
-          d.code,
-          d.givenName,
-          d.familyName
+          d.Driver.driverId,
+          d.Driver.permanentNumber,
+          d.Driver.code,
+          d.Driver.givenName,
+          d.Driver.familyName
         );
-        driver.url = d.url;
-        driver.dateOfBirth = d.dateOfBirth;
-        driver.nationality = d.nationality;
-        return driver;
+        driver.url = d.Driver.url;
+        driver.dateOfBirth = d.Driver.dateOfBirth;
+        driver.nationality = d.Driver.nationality;
+        let constructor = new Constructor(
+          d.Constructors[0].constructoId,
+          d.Constructors[0].name,
+          d.Constructors[0].nationality
+        );
+        constructor.url = d.Constructors[0].url;
+        return new DriverStandings(
+          d.position,
+          d.points,
+          d.wins,
+          driver,
+          constructor
+        );
       });
     } catch (error) {
       console.error(error);

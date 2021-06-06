@@ -1,3 +1,14 @@
+export class DriverStandings {
+  constructor(position, points, wins, driver, constructor) {
+    this.position = position;
+    this.positionText = position;
+    this.points = points;
+    this.wins = wins;
+    this.Driver = driver;
+    this.Constructor = constructor;
+  }
+}
+
 export class Driver {
   constructor(
     driverId = '',

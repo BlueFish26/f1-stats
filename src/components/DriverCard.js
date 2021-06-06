@@ -1,4 +1,4 @@
-import "./DriverCard.css";
+import './DriverCard.css';
 
 const DriverCard = ({ driver }) => {
   return (
@@ -14,7 +14,7 @@ const DriverCard = ({ driver }) => {
               <div>
                 <span>{`${driver.Driver.givenName}`}</span>
                 <span
-                  className={`driver ${driver.Constructors[0].constructorId}`}
+                  className={`driver ${driver.Constructor.constructorId}`}
                 >{`${driver.Driver.familyName}`}</span>
               </div>
             </div>
@@ -27,7 +27,7 @@ const DriverCard = ({ driver }) => {
           </div>
           <div className="helmet-image">
             <div className="team-number">
-              <span>{driver.Constructors[0].name}</span>
+              <span>{driver.Constructor.name}</span>
               <img
                 src={`../imgs/drivers/numbers/${driver.Driver.driverId}.png`}
                 alt=""
