@@ -5,7 +5,7 @@ export default class RaceDataProvider {
     this.api = api;
     this.season = "current";
     this.races = [];
-    console.log("RaceDataProvider Created 🏍 ");
+    console.log("RaceDataProvider Created 👌");
   }
 
   loadRaces = async (season) => {
@@ -36,14 +36,24 @@ export default class RaceDataProvider {
         new Location(
           race.Circuit.Location.lat,
           race.Circuit.Location.long,
-          race.Circuit.Location.locality
+          race.Circuit.Location.locality,
+          race.Circuit.Location.country
         )
       );
       thisRace.Circuit.circuitImagePath = circuitImagePath;
-      //console.log(thisRace);
       return thisRace;
     });
     console.log("_race", _races);
     this.races = _races;
+  };
+
+  getRaceResult = async (round) => {
+    const raceResult = await this.api.getRaceResults(round);
+    return raceResult;
+  };
+
+  getQualifyingResults = async (round) => {
+    const qualiResult = await this.api.getQualifyingResults(round);
+    return qualiResult;
   };
 }

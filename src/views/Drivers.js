@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import DriverCard from "../components/DriverCard";
 import { useF1Context } from "../contexts/F1Context";
-import { getDrivers } from "../reducers/f1Actions";
+import { getDrivers } from "../reducers/DriverActions";
 
 const Drivers = () => {
   const [{ drivers }, dispatch] = useF1Context();

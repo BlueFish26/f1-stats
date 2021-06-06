@@ -5,7 +5,7 @@ import {
   getRaces,
   setRaceResult,
   setQualifyingResult,
-} from "../reducers/f1Actions";
+} from "../reducers/RaceActions";
 import RaceStats from "../components/RaceStats";
 
 const Race = () => {

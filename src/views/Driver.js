@@ -2,7 +2,7 @@ import "./Driver.css";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useF1Context } from "../contexts/F1Context";
-import { getDrivers, getDriverSeasonResults } from "../reducers/f1Actions";
+import { getDrivers, getDriverSeasonResults } from "../reducers/DriverActions";
 import Accordion from "../components/Accordion";
 import DriverCardWide from "../components/DriverCardWide";
 import DriverRaceGraph from "../components/DriverRaceGraph";
