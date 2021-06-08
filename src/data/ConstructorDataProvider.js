@@ -1,5 +1,11 @@
-import { ConstructorStandings, Constructor } from '../models/Constructor';
-import { Driver } from '../models/Driver';
+/*
+Note:
+We can also implement an Adapter Pattern (maybe for the F1API) where it will contain different way (or potential) of parsing different Data Format.
+Then this ConstructorDataProvider (and other data provider that we have) can expect the same data format
+*/
+
+import { ConstructorStandings, Constructor } from "../models/Constructor";
+import { Driver } from "../models/Driver";
 
 /*
 export default class ConstructorDataProvider {
@@ -52,9 +58,9 @@ export default class ConstructorDataProvider {
 */
 
 const ConstructorDataProvider = (function () {
-  console.log('ConstructorDataProvider created. 👌');
+  console.log("ConstructorDataProvider created. 👌");
   let api = null;
-  let season = '';
+  let season = "";
   let constructorStandings = null;
 
   const setApi = (_api) => {
