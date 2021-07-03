@@ -1,4 +1,4 @@
-import './DriverCardWide.css';
+import "./DriverCardWide.css";
 
 const DriverCardWide = ({ driver }) => {
   return (
@@ -14,7 +14,7 @@ const DriverCardWide = ({ driver }) => {
               <div>
                 <span>{`${driver.Driver.givenName}`}</span>
                 <span
-                  className={`driver ${driver.Constructors[0].constructorId}`}
+                  className={`driver ${driver.Constructor.constructorId}`}
                 >{`${driver.Driver.familyName}`}</span>
               </div>
             </div>
@@ -28,7 +28,7 @@ const DriverCardWide = ({ driver }) => {
 
           <div className="helmet-image">
             <div className="team-number">
-              <span>{driver.Constructors[0].name}</span>
+              <span>{driver.Constructor.name}</span>
               <img
                 src={`../imgs/drivers/numbers/${driver.Driver.driverId}.png`}
                 alt=""
