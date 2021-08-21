@@ -29,7 +29,7 @@ const App = () => {
           <Route path="/driver/:driverId">
             <Driver />
           </Route>
-          <Route path="/" component={Teams} exact />
+          <Route path="/" component={RaceSchedule} exact />
         </Switch>
       </F1ContextProvider>
     </div>

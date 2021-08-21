@@ -29,7 +29,7 @@ export const getConstructors = async (dispatch) => {
         dataProvider.constructorStandings
       );
       console.log(
-        "dataProvider.getConstructorStandings(),",
+        "👍 dataProvider.getConstructorStandings(),",
         dataProvider.getConstructorStandings()
       );
 
